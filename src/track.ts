@@ -14,7 +14,7 @@ export class Track implements Readonly<TrackData> {
     readonly bpm: number
     readonly date: number
     readonly genre: string
-    readonly color: string = "hsl(25,76%,57%)"
+    readonly color: string = "hsl(30,76%,57%)"
 
     constructor({ id, name, bpm, date, genre }: TrackData, readonly stages: Peaks.Stages) {
         this.id = id
