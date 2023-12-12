@@ -22,4 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-/audio/
+/public/cover/
+/public/mp3/
+/public/pks/
