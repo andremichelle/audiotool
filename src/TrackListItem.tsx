@@ -1,14 +1,17 @@
 import "./TrackListItem.sass"
 import { Track } from "./track.ts"
-import React, { useEffect, useRef } from "react"
+import React, { Dispatch, memo, SetStateAction, useEffect, useRef } from "react"
 import { PeaksPainter } from "./waveform.ts"
 import { Peaks } from "./common/peaks.ts"
+import { Nullable } from "./common/lang.ts"
 
 export type TrackListItemProps = {
-    readonly track: Track
+    track: Track
+    setCurrentTrackId: Dispatch<SetStateAction<Nullable<string>>>
+    isPlaying: boolean
 }
 
-export const TrackListItem = ({ track }: TrackListItemProps) => {
+export const TrackListItem = memo(({ track, setCurrentTrackId, isPlaying }: TrackListItemProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
@@ -38,19 +41,21 @@ export const TrackListItem = ({ track }: TrackListItemProps) => {
     const style = { "--color": track.color } as React.CSSProperties
 
     return (
-        <div className="track-list-item" style={style}>
+        <div className="track-list-item" style={style} onClick={() => setCurrentTrackId(track.id)}>
             <div className="cover">
                 <img src={track.coverURL} />
                 <img src={track.coverURL} />
             </div>
             <div className="state">
                 <svg>
-                    <use href="#play" />
+                    <use href={isPlaying ? "#pause" : "#play"} />
                 </svg>
             </div>
             <div className="header">
                 <div className="name">{track.name}</div>
-                <canvas ref={canvasRef} className="waveform"></canvas>
+                <div className="waveform">
+                    <canvas ref={canvasRef}></canvas>
+                </div>
             </div>
             <div className="details">
                 <div className="genre">{track.genre}</div>
@@ -58,4 +63,4 @@ export const TrackListItem = ({ track }: TrackListItemProps) => {
                 <div className="bpm">{`${track.bpm} BPM`}</div>
             </div>
         </div>)
-}
+})
