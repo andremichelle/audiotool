@@ -8,7 +8,7 @@ import { PlaybackState } from "./PlaybackState.ts"
 
 export type TrackListItemProps = {
     track: Track
-    setCurrentTrackId: Dispatch<SetStateAction<Nullable<string>>>
+    setActiveTrack: Dispatch<SetStateAction<Nullable<Track>>>
     isActiveTrack: boolean
     playbackState: PlaybackState
     playbackProgress: unitValue
@@ -16,7 +16,7 @@ export type TrackListItemProps = {
 
 export const TrackListItem = memo(({
                                        track,
-                                       setCurrentTrackId,
+                                       setActiveTrack,
                                        isActiveTrack,
                                        playbackProgress,
                                        playbackState
@@ -40,7 +40,7 @@ export const TrackListItem = memo(({
     const style = { "--color": color, "--progress": playbackProgress } as React.CSSProperties
 
     return (
-        <div className="track-list-item" style={style} onClick={() => setCurrentTrackId(track.id)}>
+        <div className="track-list-item" style={style} onClick={() => setActiveTrack(track)}>
             <div className="cover">
                 <img src={track.coverURL} />
                 <img src={track.coverURL} />

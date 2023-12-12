@@ -1,7 +1,7 @@
 import "./TrackList.sass"
 import { Track } from "./track.ts"
 import { TrackListItem } from "./TrackListItem.tsx"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Nullable, unitValue } from "./common/lang.ts"
 import { PlaybackState } from "./PlaybackState.ts"
 
@@ -10,18 +10,24 @@ export type TrackListProps = {
 }
 
 export const TrackList = ({ tracks }: TrackListProps) => {
-    const [activeTrackId, setActiveTrackId] = useState<Nullable<string>>(null)
+    const [activeTrack, setActiveTrack] = useState<Nullable<Track>>(null)
     const [activeTrackState, setActiveTrackState] = useState<PlaybackState>(PlaybackState.Playing)
     const [activeTrackProgress, setActiveTrackProgress] = useState<unitValue>(0.5)
+
+    useEffect(() => {
+        const intervalId = setInterval(() => setActiveTrackProgress(value => (value + 0.01) % 1.0), 20)
+        return () => clearInterval(intervalId)
+    }, [])
+
     return (
         <div className="track-list">
             {tracks.map(track => {
-                const isActiveTrack = track.id === activeTrackId
+                const isActiveTrack = track.id === activeTrack?.id
                 return <TrackListItem track={track} key={track.id}
                                       isActiveTrack={isActiveTrack}
                                       playbackState={isActiveTrack ? activeTrackState : PlaybackState.Paused}
                                       playbackProgress={isActiveTrack ? activeTrackProgress : 0.0}
-                                      setCurrentTrackId={setActiveTrackId} />
+                                      setActiveTrack={setActiveTrack} />
             })}
         </div>)
 }
