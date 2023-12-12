@@ -47,7 +47,7 @@ export const TrackListItem = ({ track, setTrack }: TrackListItemProps) => {
             <div className="details">
                 <div className="genre">{track.genre}</div>
                 <div className="date">{new Date(track.date).toLocaleDateString()}</div>
-                <div className="bpm">{track.bpm}</div>
+                <div className="bpm">{`${track.bpm} BPM`}</div>
             </div>
         </div>)
 }
