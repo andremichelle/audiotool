@@ -6,11 +6,11 @@
   grid-template-columns: 4em 4em 15em
   width: min-content
   min-height: 4em
-  border: 0.25px rgba(white, 0.1) solid
   background-color: $COLOR_BLACK
-  border-radius: 0.5em 0.5em 0.25em 0.5em
+  border-radius: 4em 0.5em 0.25em 4em
   overflow: hidden
-  box-shadow: 0 4px 4px 0 rgba(black, 0.4), 0 0 16px 0 rgba(black, 0.2)
+  box-shadow: 0 8px 4px 0 rgba(black, 0.4), -0.5px 0.5px 0.5px 0 rgba(white, 0.1) inset
+  --color: hsl(25, 76%, 57%)
 
   .cover
     grid-row-start: 1
@@ -26,14 +26,12 @@
       left: 12.5%
       width: 75%
       height: 75%
-      border: 0.25px rgba(white, 0.1) solid
-      border-radius: 0.25em
+      border-radius: 50%
       background-color: rgb(27, 27, 27)
       position: absolute
       mix-blend-mode: lighten
 
       &:first-child
-        opacity: 0.5
         filter: blur(8px)
 
   .state
@@ -43,7 +41,7 @@
     grid-column-end: 2
     border-radius: 0 0.5em 0 0
     fill: $COLOR_BLACK
-    background-color: $COLOR_ORANGE
+    background-color: var(--color)
     display: flex
     align-items: center
     justify-content: center
@@ -63,11 +61,12 @@
 
     > .name
       flex: 1 0 0
-      color: $COLOR_ORANGE
+      color: var(--color)
       font-weight: 200
       padding: 0 1em
       display: flex
       align-items: center
+      white-space: nowrap
 
     > .waveform
       flex: 0 0 1.25em
@@ -83,7 +82,7 @@
     display: grid
     grid-template-columns: 8em 1fr min-content
     color: $COLOR_BLACK
-    background-color: $COLOR_ORANGE
+    background-color: var(--color)
     align-items: center
     justify-content: center
     font-size: 0.5em
@@ -97,7 +96,7 @@
       font-weight: bold
       padding: 0 2px
       margin: 0 1px 0 0
-      color: $COLOR_ORANGE
+      color: var(--color)
       background-color: $COLOR_BLACK
       box-shadow: 0 0.5px 0.5px 0 rgba(white, 0.16) inset
 
@@ -109,5 +108,5 @@
       white-space: nowrap
       padding: 0 2px
       margin: 0 2px 0 0
-      color: $COLOR_ORANGE
+      color: var(--color)
       background-color: $COLOR_BLACK

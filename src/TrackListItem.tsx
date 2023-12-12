@@ -1,11 +1,11 @@
 import "./TrackListItem.sass"
 import { Track } from "./track.ts"
-import { useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { PeaksPainter } from "./waveform.ts"
 import { Peaks } from "./common/peaks.ts"
 
 export type TrackListItemProps = {
-    track: Track
+    readonly track: Track
 }
 
 export const TrackListItem = ({ track }: TrackListItemProps) => {
@@ -22,7 +22,7 @@ export const TrackListItem = ({ track }: TrackListItemProps) => {
                 const stages: Peaks.Stages = track.stages
                 const context = canvas.getContext("2d")!
                 context.beginPath()
-                context.fillStyle = "rgb(229, 132, 61)"
+                context.fillStyle = track.color
                 PeaksPainter.renderBlocks(context, stages, 0, {
                     u0: 0, u1: stages.numFrames,
                     v0: -1.5, v1: 1.5,
@@ -35,8 +35,10 @@ export const TrackListItem = ({ track }: TrackListItemProps) => {
         return () => intersectionObserver.disconnect()
     }, [])
 
+    const style = { "--color": track.color } as React.CSSProperties
+
     return (
-        <div className="track-list-item">
+        <div className="track-list-item" style={style}>
             <div className="cover">
                 <img src={track.coverURL} />
                 <img src={track.coverURL} />
