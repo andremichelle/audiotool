@@ -1,17 +1,14 @@
 import "./TrackList.sass"
-import { TrackModel } from "./track.ts"
+import { Track } from "./track.ts"
 import { TrackListItem } from "./TrackListItem.tsx"
-import { Dispatch, SetStateAction } from "react"
-import { Nullable } from "./common/lang.ts"
 
 export type TrackListProps = {
-    tracks: ReadonlyArray<TrackModel>
-    setTrack: Dispatch<SetStateAction<Nullable<TrackModel>>>
+    tracks: ReadonlyArray<Track>
 }
 
-export const TrackList = ({ tracks, setTrack }: TrackListProps) => {
+export const TrackList = ({ tracks }: TrackListProps) => {
     return (
         <div className="track-list">
-            {tracks.map(track => <TrackListItem track={track} setTrack={setTrack} key={track.id} />)}
+            {tracks.map(track => <TrackListItem track={track} key={track.id} />)}
         </div>)
 }

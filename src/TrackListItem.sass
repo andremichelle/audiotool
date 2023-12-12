@@ -6,7 +6,7 @@
   grid-template-columns: 4em 4em 15em
   width: min-content
   min-height: 4em
-  border: 0.5px rgba(white, 0.1) solid
+  border: 0.25px rgba(white, 0.1) solid
   background-color: $COLOR_BLACK
   border-radius: 0.5em 0.5em 0.25em 0.5em
   overflow: hidden
@@ -18,7 +18,6 @@
     grid-column-start: 1
     grid-column-end: 1
     position: relative
-    border-radius: 0.25em 0 0 0.25em
     background-color: black
 
     > img
@@ -27,11 +26,14 @@
       left: 12.5%
       width: 75%
       height: 75%
+      border: 0.25px rgba(white, 0.1) solid
       border-radius: 0.25em
-      background-color: black
+      background-color: rgb(27, 27, 27)
       position: absolute
+      mix-blend-mode: lighten
 
       &:first-child
+        opacity: 0.5
         filter: blur(8px)
 
   .state

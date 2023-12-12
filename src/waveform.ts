@@ -27,7 +27,8 @@ export namespace PeaksPainter {
         { u0, u1, v0, v1, x0, x1, y0, y1 }: Layout
     ): void => {
         const unitsEachPixel = (u1 - u0) / (x1 - x0)
-        const stage = stages.nearest(unitsEachPixel)
+        const width = 4
+        const stage = stages.nearest(unitsEachPixel * width)
         if (stage === null) {
             return
         }
@@ -39,19 +40,18 @@ export namespace PeaksPainter {
         let indexFrom: int = Math.floor(from)
         let min: number = 0
         let max: number = 0
-        const data = stages.data[channelIndex]
-        const width = 5
+        const channel = stages.channels[channelIndex]
         for (let x = Math.floor(x0); x < x1; x += width) {
             const to = from + peaksEachPixel * width
             const indexTo = Math.floor(to)
             while (indexFrom < indexTo) {
-                const bits = data[stage.dataOffset + indexFrom++]
+                const bits = channel[stage.dataOffset + indexFrom++]
                 min = Math.min(Peaks.unpack(bits, 0), min)
                 max = Math.max(Peaks.unpack(bits, 1), max)
             }
             const yMin = y0 + Math.floor((min - v0) * scale)
             const yMax = y0 + Math.floor((max - v0) * scale)
-            path.roundRect(x, Math.min(yMin, yMax), width - 1, Math.abs(yMax - yMin), Number.MAX_SAFE_INTEGER)
+            path.roundRect(x, Math.min(yMin, yMax), width - 1, Math.abs(yMax - yMin) || 1, Number.MAX_SAFE_INTEGER)
             const tmp = max
             max = min
             min = tmp

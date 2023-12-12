@@ -1,3 +1,5 @@
+import { Peaks } from "./common/peaks.ts"
+
 export interface TrackData {
     id: string
     name: string
@@ -6,14 +8,14 @@ export interface TrackData {
     genre: string
 }
 
-export class TrackModel implements Readonly<TrackData> {
+export class Track implements Readonly<TrackData> {
     readonly id: string
     readonly name: string
     readonly bpm: number
     readonly date: number
     readonly genre: string
 
-    constructor({ id, name, bpm, date, genre }: TrackData) {
+    constructor({ id, name, bpm, date, genre }: TrackData, readonly stages: Peaks.Stages) {
         this.id = id
         this.name = name
         this.bpm = bpm
@@ -21,7 +23,6 @@ export class TrackModel implements Readonly<TrackData> {
         this.genre = genre
     }
 
-    get pksURL(): string {return `pks/${this.id}.pks`}
     get mp3URL(): string {return `mp3/${this.id}.mp3`}
     get coverURL(): string {return `cover/${this.id}.jpg`}
 }
