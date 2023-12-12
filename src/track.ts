@@ -21,6 +21,7 @@ export class TrackModel implements Readonly<TrackData> {
         this.genre = genre
     }
 
+    get pksURL(): string {return `pks/${this.id}.pks`}
     get mp3URL(): string {return `mp3/${this.id}.mp3`}
     get coverURL(): string {return `cover/${this.id}.jpg`}
 }

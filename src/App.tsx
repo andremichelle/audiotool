@@ -10,7 +10,7 @@ const tracks = (data as ReadonlyArray<TrackData>).map(data => new TrackModel(dat
 export const App = () => {
     const audioRef = useRef<HTMLAudioElement>(null)
     const [track, setTrack] = useState<Nullable<TrackModel>>(null)
-    const [isPlaying, setIsPlaying] = useState(true)
+    const [isPlaying, setIsPlaying] = useState(false)
 
     useEffect(() => {
         const audio = audioRef.current
