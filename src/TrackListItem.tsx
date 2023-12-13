@@ -6,6 +6,7 @@ import { Peaks } from "./common/peaks.ts"
 import { unitValue } from "./common/lang.ts"
 import { PlaybackState } from "./PlaybackState.ts"
 import { Playback } from "./Playback.ts"
+import { clamp } from "./common/math.ts"
 
 export type TrackListItemProps = {
     track: Track
@@ -40,27 +41,29 @@ export const TrackListItem = memo(({
     const style = { "--color": track.color, "--progress": playbackProgress } as React.CSSProperties
 
     return (
-        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`}
-             style={style}
-             onClick={() => playback.toggle(track)}>
+        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`} style={style}>
             <div className="cover">
                 <img src={track.coverURL} />
                 <img src={track.coverURL} />
             </div>
             <div className="state">
-                <svg>
+                <svg onClick={() => playback.toggle(track)}>
                     <use href={playbackStateToIcon(isActiveTrack, playbackState)} />
                 </svg>
             </div>
             <div className="header">
                 <div className="name">{track.name}</div>
-                <div className="waveform">
+                <div className="waveform" onClick={event => {
+                    const rect = event.currentTarget.getBoundingClientRect()
+                    playback.playTrackFrom(track, clamp((event.clientX - rect.left) / rect.width))
+                }}>
                     <canvas ref={canvasRef}></canvas>
                 </div>
             </div>
             <div className="details">
                 <div className="genre">{track.genre}</div>
-                <div className="date">{new Date(track.date).toLocaleDateString()}</div>
+                <div className="date">{track.dateString}</div>
+                <div className="duration">{track.durationString}</div>
                 <div className="bpm">{`${track.bpm} BPM`}</div>
             </div>
         </div>)
@@ -76,7 +79,7 @@ const paint = (canvas: HTMLCanvasElement, track: Track): void => {
     PeaksPainter.renderBlocks(context, stages, 0, {
         u0: 0, u1: stages.numFrames,
         v0: -1.5, v1: 1.5,
-        x0: 0, x1: w, y0: 0, y1: h + 2
+        x0: 0, x1: w, y0: 0, y1: h
     })
     context.fill()
 }

@@ -24,6 +24,9 @@ export const TrackList = ({ tracks, playback }: TrackListProps) => {
             } else if (event.type === "playing") {
                 setActiveTrackState(PlaybackState.Playing)
                 setActiveTrackProgress(event.progress)
+            } else if (event.type === "buffering") {
+                setActiveTrackState(PlaybackState.Buffering)
+                setActiveTrackProgress(0.0)
             } else if (event.type === "paused") {
                 setActiveTrackState(PlaybackState.Paused)
             } else if (event.type === "error") {

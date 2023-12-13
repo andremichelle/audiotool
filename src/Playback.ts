@@ -42,6 +42,21 @@ export class Playback {
         this.#playUrl(track.mp3URL)
     }
 
+    playTrackFrom(track: Track, position: unitValue): void {
+        if (this.#active.contains(track)) {
+            this.#audio.currentTime = track.seconds * position
+            if (this.#audio.paused) {
+                this.#audio.play().catch()
+            }
+            return
+        }
+        this.eject()
+        this.active = Option.wrap(track)
+        this.#notify({ type: "buffering" })
+        this.#playUrl(track.mp3URL)
+        this.#audio.currentTime = track.seconds * position
+    }
+
     eject(): void {
         this.active = Option.None
         this.#audio.onended = null
@@ -80,5 +95,5 @@ export class Playback {
         this.#audio.play().catch()
     }
 
-    #notify(value: PlaybackEvent) {this.#notifier.notify(value)}
+    #notify(event: PlaybackEvent) {this.#notifier.notify(event)}
 }
