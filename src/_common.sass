@@ -1,3 +1,15 @@
 $COLOR_BLACK: rgb(28, 28, 28)
 $COLOR_DARK: rgb(39, 39, 39)
 $COLOR_ORANGE: hsl(25, 76%, 57%)
+
+@mixin normal
+  @media only screen and (max-width: 1024px)
+    @content
+
+@mixin small
+  @media only screen and (max-width: 768px)
+    @content
+
+@mixin tiny
+  @media only screen and (max-width: 560px)
+    @content
