@@ -5,19 +5,21 @@ import { Notifier } from "./common/observers.ts"
 import { Procedure, unitValue } from "./common/lang.ts"
 
 export type PlaybackEvent = {
-    type: "activate"
+    state: "activate"
     track: Option<Track>
 } | {
-    type: "buffering"
+    state: "buffering"
 } | {
-    type: "playing"
+    state: "playing"
     progress: unitValue
 } | {
-    type: "paused"
+    state: "paused"
 } | {
-    type: "error"
+    state: "error"
     reason: string
 }
+
+export type PlaybackState = PlaybackEvent["state"]
 
 export class Playback {
     readonly #audio = new Audio()
@@ -38,8 +40,8 @@ export class Playback {
         }
         this.eject()
         this.active = Option.wrap(track)
-        this.#notify({ type: "buffering" })
-        this.#playUrl(track.mp3URL)
+        this.#notify({ state: "buffering" })
+        this.#play(track)
     }
 
     playTrackFrom(track: Track, position: unitValue): void {
@@ -52,8 +54,8 @@ export class Playback {
         }
         this.eject()
         this.active = Option.wrap(track)
-        this.#notify({ type: "buffering" })
-        this.#playUrl(track.mp3URL)
+        this.#notify({ state: "buffering" })
+        this.#play(track)
         this.#audio.currentTime = track.seconds * position
     }
 
@@ -72,26 +74,25 @@ export class Playback {
     get active(): Option<Track> {return this.#active}
     set active(value: Option<Track>) {
         this.#active = value
-        this.#notify({ type: "activate", track: value })
+        this.#notify({ state: "activate", track: value })
     }
 
-    #playUrl(url: string): void {
+    #play(track: Track): void {
         this.#audio.onended = () =>
             this.#active.map(active => (this.playlist.findIndex(track => track === active) + 1) % this.playlist.length)
                 .ifSome(index => this.toggle(this.playlist[index]))
-        this.#audio.onplay = () => this.#notify({ type: "buffering" })
-        this.#audio.onpause = () => this.#notify({ type: "paused" })
-        this.#audio.onerror = (event, _source, _lineno, _colno, error) => {
-            const reason = error?.message ?? event instanceof Event ? "Unknown" : event
-            console.log("onerror", reason)
-            this.#notify({ type: "error", reason })
-        }
-        this.#audio.onstalled = () => this.#notify({ type: "buffering" })
-        this.#audio.ontimeupdate = () => this.#notify({
-            type: "playing",
-            progress: this.#audio.currentTime / this.#audio.duration
+        this.#audio.onplay = () => this.#notify({ state: "buffering" })
+        this.#audio.onpause = () => this.#notify({ state: "paused" })
+        this.#audio.onerror = (event, _source, _lineno, _colno, error) => this.#notify({
+            state: "error",
+            reason: error?.message ?? event instanceof Event ? "Unknown" : event
         })
-        this.#audio.src = url
+        this.#audio.onstalled = () => this.#notify({ state: "buffering" })
+        this.#audio.ontimeupdate = () => this.#notify({
+            state: "playing",
+            progress: this.#audio.currentTime / track.seconds
+        })
+        this.#audio.src = track.mp3URL
         this.#audio.play().catch()
     }
 

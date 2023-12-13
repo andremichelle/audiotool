@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import App from "./App.tsx"
+import { App } from "./components/App.tsx"
 import data from "./data.json"
 import { Track, TrackJSON } from "./track.ts"
 import { Peaks } from "./common/peaks.ts"
@@ -9,6 +9,7 @@ import { Playback } from "./Playback.ts"
 
 // TODO
 //  Keyboard Shortcuts
+//  Mobile
 //  Track download
 //  Track rating
 //  Main Player with visuals

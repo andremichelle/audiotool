@@ -3,25 +3,17 @@ import { panic } from "./common/lang.ts"
 
 const sampleRate = 44100 // the sample-rate at which the peaks were computed
 
-const Genres = [
-    "Electro", "Techno",
-    "House", "Drum & Bass",
-    "Reggae", "Downtempo",
-    "Ambient", "Future Bass",
-    "Experimental", "Synthwave"
-]
-
 const Colors: Record<string, string> = {
-    "Electro": "hsl(200, 60%, 40%)",
-    "Techno": "hsl(0, 0%, 40%)",
-    "House": "hsl(45, 60%, 45%)",
+    "Electro": "hsl(190, 60%, 40%)",
+    "Techno": "hsl(0, 0%, 45%)",
+    "House": "hsl(45, 66%, 45%)",
     "Drum & Bass": "hsl(0, 50%, 50%)",
     "Reggae": "hsl(100, 60%, 45%)",
-    "Downtempo": "hsl(210, 30%, 60%)",
-    "Ambient": "hsl(197, 71%, 73%)",
+    "Downtempo": "hsl(210, 30%, 70%)",
+    "Ambient": "hsl(197, 71%, 65%)",
     "Future Bass": "hsl(300, 40%, 50%)",
     "Experimental": "hsl(260, 50%, 50%)",
-    "Synthwave": "hsl(285, 80%, 50%)"
+    "Synthwave": "hsl(275, 60%, 70%)"
 }
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -68,7 +60,7 @@ export class Track implements Readonly<TrackJSON> {
         this.name = name
         this.bpm = bpm
         this.date = date
-        this.genre = Genres.includes(genre) ? genre : panic("Unknown genre")
+        this.genre = genre in Colors ? genre : panic("Unknown genre")
     }
 
     get color(): string {return Colors[this.genre]}

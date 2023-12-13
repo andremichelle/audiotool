@@ -1,12 +1,11 @@
 import "./TrackListItem.sass"
-import { Track } from "./track.ts"
+import { Track } from "../track.ts"
 import React, { memo, useEffect, useRef } from "react"
-import { PeaksPainter } from "./waveform.ts"
-import { Peaks } from "./common/peaks.ts"
-import { unitValue } from "./common/lang.ts"
-import { PlaybackState } from "./PlaybackState.ts"
-import { Playback } from "./Playback.ts"
-import { clamp } from "./common/math.ts"
+import { PeaksPainter } from "../waveform.ts"
+import { Peaks } from "../common/peaks.ts"
+import { unitValue } from "../common/lang.ts"
+import { Playback, PlaybackState } from "../Playback.ts"
+import { clamp } from "../common/math.ts"
 
 export type TrackListItemProps = {
     track: Track
@@ -62,8 +61,18 @@ export const TrackListItem = memo(({
             </div>
             <div className="details">
                 <div className="genre">{track.genre}</div>
-                <div className="date">{track.dateString}</div>
-                <div className="duration">{track.durationString}</div>
+                <div className="date">
+                    <svg>
+                        <use href="#create" />
+                    </svg>
+                    <span>{track.dateString}</span>
+                </div>
+                <div className="duration">
+                    <svg>
+                        <use href="#duration" />
+                    </svg>
+                    <span>{track.durationString}</span>
+                </div>
                 <div className="bpm">{`${track.bpm} BPM`}</div>
             </div>
         </div>)
@@ -87,13 +96,13 @@ const paint = (canvas: HTMLCanvasElement, track: Track): void => {
 const playbackStateToIcon = (isCurrentTrack: boolean, playbackState: PlaybackState): string => {
     if (isCurrentTrack) {
         switch (playbackState) {
-            case PlaybackState.Buffering:
+            case "buffering":
                 return "#buffering"
-            case PlaybackState.Playing:
+            case "playing":
                 return "#playing"
-            case PlaybackState.Paused:
+            case "paused":
                 return "#play"
-            case PlaybackState.Error:
+            case "error":
                 return "#error"
         }
     }
