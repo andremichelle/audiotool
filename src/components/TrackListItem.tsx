@@ -48,7 +48,7 @@ export const TrackListItem = memo(({
 
     return (
         <div className={`track-list-item ${isActiveTrack ? "active" : ""}`} style={style} ref={item}
-             data-rating={"⭐".repeat(track.rating)}>
+             data-rating={"★".repeat(track.rating)}>
             <div className="cover">
                 <img src={track.tinyCoverURL} />
                 <img src={track.tinyCoverURL} />
