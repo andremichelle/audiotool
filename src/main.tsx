@@ -9,6 +9,7 @@ import { Playback } from "./Playback.ts"
 import { MeterWorkletNode } from "./waa/meter-node.ts"
 
 // TODO
+//  Ellipses for names
 //  Icon does not animate on Safari
 //  Keyboard Shortcuts
 //  Mobile

@@ -1,17 +1,27 @@
 @import ../common
 
 .track-list-item
+  --progress: 0
+  --color: hsl(25, 76%, 57%)
+  width: 100%
   display: grid
   grid-template-rows: 3em 1em
   grid-template-columns: 4em 4em 1fr
   min-height: 4em
   background: $COLOR_DARK
   border-radius: 4em 0.5em 0.25em 4em
-  overflow: hidden
   box-shadow: -0.5px 0.5px 0.5px 0 rgba(white, 0.1) inset, 0 8px 4px 0 rgba(black, 0.4)
-  --progress: 0
-  --color: hsl(25, 76%, 57%)
+  position: relative
   box-sizing: content-box
+
+  &:before
+    content: attr(data-rating)
+    position: absolute
+    text-align: right
+    top: 50%
+    transform: translate(0, -50%)
+    font-size: 0.5em
+    right: calc(100% + 0.5em)
 
   &.active
     box-shadow: 0 0 0 2px var(--color), 0 8px 4px 0 rgba(black, 0.4)
@@ -26,7 +36,9 @@
     grid-column-start: 1
     grid-column-end: 1
     position: relative
+    border-radius: 4em 0 0 4em
     background-color: rgb(10, 10, 10)
+    overflow: hidden
 
     > img
       object-fit: contain
@@ -72,11 +84,13 @@
     > .name
       flex: 1 0 0
       color: var(--color)
-      font-weight: 200
+      font-weight: 300
       padding: 0 1em
       display: flex
       align-items: center
       white-space: nowrap
+      overflow: hidden
+      text-overflow: fade
 
     > .waveform
       flex: 0 0 1.25em

@@ -4,7 +4,8 @@
     "name": "Continue",
     "bpm": 123,
     "date": 1267475680000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 1
   },
   {
     "id": "002",
@@ -18,21 +19,24 @@
     "name": "Rooibo",
     "bpm": 120,
     "date": 1268402375000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 1
   },
   {
     "id": "004",
     "name": "8bits but a byte",
     "bpm": 125,
     "date": 1269857768000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 3
   },
   {
     "id": "005",
     "name": "AcidTea",
     "bpm": 123,
     "date": 1269877447000,
-    "genre": "House"
+    "genre": "House",
+    "rating": 1
   },
   {
     "id": "006",
@@ -46,35 +50,40 @@
     "name": "Departure",
     "bpm": 165,
     "date": 1271953857000,
-    "genre": "Drum & Bass"
+    "genre": "Drum & Bass",
+    "rating": 2
   },
   {
     "id": "008",
     "name": "BeQ",
     "bpm": 118,
     "date": 1273155071000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 1
   },
   {
     "id": "009",
     "name": "Casual Failure",
     "bpm": 140,
     "date": 1276113596000,
-    "genre": "Reggae"
+    "genre": "Reggae",
+    "rating": 1
   },
   {
     "id": "010",
     "name": "Plain",
     "bpm": 128,
     "date": 1283437526000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "011",
     "name": "Long way home",
     "bpm": 120,
     "date": 1283517681000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "012",
@@ -109,7 +118,8 @@
     "name": "Xtal",
     "bpm": 127,
     "date": 1298486640000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 2
   },
   {
     "id": "017",
@@ -123,21 +133,24 @@
     "name": "MatrixA2",
     "bpm": 127,
     "date": 1300892760000,
-    "genre": "House"
+    "genre": "House",
+    "rating": 1
   },
   {
     "id": "019",
     "name": "MatrixA2 Remix",
     "bpm": 127,
     "date": 1300918612000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "020",
     "name": "Instant Coffee",
     "bpm": 127,
     "date": 1302643674000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "021",
@@ -151,7 +164,8 @@
     "name": "Viscous",
     "bpm": 125,
     "date": 1303774254000,
-    "genre": "Downtempo"
+    "genre": "Downtempo",
+    "rating": 2
   },
   {
     "id": "023",
@@ -165,7 +179,8 @@
     "name": "Tief Blau",
     "bpm": 129,
     "date": 1307313407000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "025",
@@ -193,35 +208,40 @@
     "name": "Just another sphere",
     "bpm": 110,
     "date": 1309908660000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 2
   },
   {
     "id": "029",
     "name": "8 minus 8",
     "bpm": 120,
     "date": 1312723694000,
-    "genre": "House"
+    "genre": "House",
+    "rating": 1
   },
   {
     "id": "030",
     "name": "Inner Space",
     "bpm": 128,
     "date": 1313999843000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "031",
     "name": "Pling Plang",
     "bpm": 128,
     "date": 1315415242000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "032",
     "name": "Dispensation",
     "bpm": 128,
     "date": 1315483177000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "033",
@@ -242,7 +262,8 @@
     "name": "Acceleron",
     "bpm": 128,
     "date": 1316013919000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "036",
@@ -256,196 +277,224 @@
     "name": "Groove Injection",
     "bpm": 128,
     "date": 1317378320000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "038",
     "name": "Inject(A)",
     "bpm": 128,
     "date": 1317399118000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "039",
     "name": "Inject(B)",
     "bpm": 128,
     "date": 1317419622000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "040",
     "name": "Inject(C)",
     "bpm": 124,
     "date": 1317713929000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "041",
     "name": "Unendlich",
     "bpm": 128,
     "date": 1318857938000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "042",
     "name": "Computer says Funk",
     "bpm": 128,
     "date": 1320153128000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "043",
     "name": "Velocities",
     "bpm": 128,
     "date": 1321631916000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "044",
     "name": "Inject(D)",
     "bpm": 128,
     "date": 1321632623000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "045",
     "name": "No Control",
     "bpm": 128,
     "date": 1321884018000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "046",
     "name": "Disappointed Horse Dub",
     "bpm": 90,
     "date": 1324390464000,
-    "genre": "Downtempo"
+    "genre": "Downtempo",
+    "rating": 1
   },
   {
     "id": "047",
     "name": "Inject(E)",
     "bpm": 128,
     "date": 1324595487000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "048",
     "name": "Catch my drift",
     "bpm": 165,
     "date": 1324681722000,
-    "genre": "Drum & Bass"
+    "genre": "Drum & Bass",
+    "rating": 2
   },
   {
     "id": "049",
     "name": "Nebular",
     "bpm": 120,
     "date": 1325092779000,
-    "genre": "Downtempo"
+    "genre": "Downtempo",
+    "rating": 3
   },
   {
     "id": "050",
     "name": "Hanzon",
     "bpm": 130,
     "date": 1326145212000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "051",
     "name": "Snow Flakes",
     "bpm": 120,
     "date": 1328024787000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 1
   },
   {
     "id": "052",
     "name": "Freak Dub",
     "bpm": 132,
     "date": 1328227229000,
-    "genre": "Future Bass"
+    "genre": "Future Bass",
+    "rating": 2
   },
   {
     "id": "053",
     "name": "Envelope",
     "bpm": 140,
     "date": 1328650223000,
-    "genre": "Future Bass"
+    "genre": "Future Bass",
+    "rating": 3
   },
   {
     "id": "054",
     "name": "Monotron",
     "bpm": 128,
     "date": 1329580767000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "055",
     "name": "Broken Link",
     "bpm": 126,
     "date": 1332023792000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "056",
     "name": "Quantum Mechanics",
     "bpm": 128,
     "date": 1334605617000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "057",
     "name": "Uncertain Pop",
     "bpm": 126,
     "date": 1334782329000,
-    "genre": "House"
+    "genre": "House",
+    "rating": 1
   },
   {
     "id": "058",
     "name": "Kaventsmann",
     "bpm": 126,
     "date": 1336084502000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "059",
     "name": "Colors of Grey",
     "bpm": 126,
     "date": 1336507604000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 2
   },
   {
     "id": "060",
     "name": "Pad and Noise",
     "bpm": 126,
     "date": 1336659050000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 1
   },
   {
     "id": "061",
     "name": "Pinch",
     "bpm": 130,
     "date": 1337025192000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "062",
     "name": "Cells",
     "bpm": 126,
     "date": 1337120183000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 2
   },
   {
     "id": "063",
     "name": "Voodoo",
     "bpm": 128,
     "date": 1341346696000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "064",
     "name": "Blurcode",
     "bpm": 128,
     "date": 1341526180000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "065",
@@ -466,161 +515,184 @@
     "name": "HAUSKAUF",
     "bpm": 126,
     "date": 1342127831000,
-    "genre": "House"
+    "genre": "House",
+    "rating": 2
   },
   {
     "id": "068",
     "name": "Dubfile",
     "bpm": 127,
     "date": 1342622606000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "069",
     "name": "Box Clouds",
     "bpm": 136,
     "date": 1343078851000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 2
   },
   {
     "id": "070",
     "name": "Chamber",
     "bpm": 126,
     "date": 1346226752000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "071",
     "name": "Caps Lock",
     "bpm": 126,
     "date": 1348316347000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "072",
     "name": "Love & Fail",
     "bpm": 128,
     "date": 1348318504000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "073",
     "name": "Einzeit",
     "bpm": 120,
     "date": 1352123108000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 2
   },
   {
     "id": "074",
     "name": "Observer",
     "bpm": 129,
     "date": 1352912953000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "075",
     "name": "Dub Street",
     "bpm": 140,
     "date": 1353330013000,
-    "genre": "Reggae"
+    "genre": "Reggae",
+    "rating": 1
   },
   {
     "id": "076",
     "name": "Transmitter",
     "bpm": 128,
     "date": 1353940307000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "077",
     "name": "Detroit Revive",
     "bpm": 126,
     "date": 1355250484000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "078",
     "name": "Blue Mood",
     "bpm": 140,
     "date": 1357500226000,
-    "genre": "Downtempo"
+    "genre": "Downtempo",
+    "rating": 3
   },
   {
     "id": "079",
     "name": "Air Dub",
     "bpm": 122,
     "date": 1358611212000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "080",
     "name": "Nite Dub",
     "bpm": 120,
     "date": 1358802418000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "081",
     "name": "Continuance",
     "bpm": 120,
     "date": 1358957979000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "082",
-    "name": "Computer Friend (André Michelle Remix)",
+    "name": "Computer Friend (Remix)",
     "bpm": 125,
     "date": 1359477919000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "083",
     "name": "Samba Dub",
     "bpm": 120,
     "date": 1359566875000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "084",
     "name": "Chord Fractions",
     "bpm": 120,
     "date": 1359637821000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "085",
     "name": "Polar Field",
     "bpm": 120,
     "date": 1359718758000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "086",
     "name": "Mono Sonic",
     "bpm": 120,
     "date": 1359811932000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "087",
     "name": "Polar Cloud",
     "bpm": 120,
     "date": 1360004830000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "088",
     "name": "Weak Signal",
     "bpm": 120,
     "date": 1360194150000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "089",
     "name": "M-Square",
     "bpm": 128,
     "date": 1360269995000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "090",
@@ -634,63 +706,72 @@
     "name": "Quaternion",
     "bpm": 120,
     "date": 1362699038000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "092",
     "name": "Mindless Groove",
     "bpm": 122,
     "date": 1363026963000,
-    "genre": "House"
+    "genre": "House",
+    "rating": 2
   },
   {
     "id": "093",
     "name": "Class Definition",
     "bpm": 126,
     "date": 1364563123000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "094",
     "name": "Screens",
     "bpm": 126,
     "date": 1365432983000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "095",
     "name": "8bits but a byte 2013",
     "bpm": 125,
     "date": 1365592757000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 2
   },
   {
     "id": "096",
     "name": "Schnitt",
     "bpm": 126,
     "date": 1365633940000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "097",
     "name": "HQ42",
     "bpm": 125,
     "date": 1365721191000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "098",
     "name": "Scene 128",
     "bpm": 126,
     "date": 1366010462000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "099",
     "name": "Kurzschnitt",
     "bpm": 124,
     "date": 1366151098000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "100",
@@ -704,98 +785,112 @@
     "name": "Smerk",
     "bpm": 123,
     "date": 1366832112000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "102",
     "name": "Kommastelle",
     "bpm": 126,
     "date": 1367312738000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "103",
     "name": "Nullstelle",
     "bpm": 125,
     "date": 1367513919000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "104",
     "name": "Sollbruchstelle",
     "bpm": 125,
     "date": 1367610706000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "105",
     "name": "Construct Infinity",
     "bpm": 120,
     "date": 1369165809000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "106",
     "name": "acid 1988",
     "bpm": 120,
     "date": 1369338062000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "107",
     "name": "Der Tag am Meer",
     "bpm": 120,
     "date": 1371585639000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "108",
     "name": "Subbass Galore",
     "bpm": 126,
     "date": 1372429102000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "109",
     "name": "Unscalable Sky",
     "bpm": 140,
     "date": 1374051724000,
-    "genre": "Downtempo"
+    "genre": "Downtempo",
+    "rating": 3
   },
   {
     "id": "110",
     "name": "Aucorit",
     "bpm": 120,
     "date": 1375140331000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "111",
     "name": "Ausfahrt Ost",
     "bpm": 126,
     "date": 1378996405000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "112",
     "name": "DIspose",
     "bpm": 126,
     "date": 1380930920000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "113",
     "name": "Pueblo",
     "bpm": 128,
     "date": 1381180905000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "114",
     "name": "Dabble Duck",
     "bpm": 110,
     "date": 1383903673000,
-    "genre": "Downtempo"
+    "genre": "Downtempo",
+    "rating": 1
   },
   {
     "id": "115",
@@ -809,14 +904,16 @@
     "name": "Surfaces",
     "bpm": 130,
     "date": 1391123602000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "117",
     "name": "Infinite Air",
     "bpm": 120,
     "date": 1393540974000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "118",
@@ -830,21 +927,24 @@
     "name": "Dub Kompilat",
     "bpm": 120,
     "date": 1403877401000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "120",
     "name": "Sensor",
     "bpm": 130,
     "date": 1404773123000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "121",
     "name": "Charging",
     "bpm": 120,
     "date": 1412951139000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "122",
@@ -858,56 +958,64 @@
     "name": "Yielding",
     "bpm": 140,
     "date": 1414100759000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 3
   },
   {
     "id": "124",
     "name": "Standard Orbit",
     "bpm": 128,
     "date": 1415274559000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "125",
     "name": "Volution",
     "bpm": 128,
     "date": 1415305138000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "126",
     "name": "Sustaining",
     "bpm": 140,
     "date": 1418952129000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 3
   },
   {
     "id": "127",
     "name": "Dominator Hoover",
     "bpm": 128,
     "date": 1419880321000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "128",
     "name": "Tonetics",
     "bpm": 128,
     "date": 1423843958000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "129",
     "name": "Defoliate",
     "bpm": 120,
     "date": 1425223631000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "130",
     "name": "Polar  Reference",
     "bpm": 124,
     "date": 1434486006000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "131",
@@ -921,63 +1029,72 @@
     "name": "Approaching",
     "bpm": 160,
     "date": 1442356836000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 3
   },
   {
     "id": "133",
     "name": "Beat Butcher",
     "bpm": 128,
     "date": 1450191582000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "134",
     "name": "Four Chords",
     "bpm": 132,
     "date": 1452195871000,
-    "genre": "House"
+    "genre": "House",
+    "rating": 2
   },
   {
     "id": "135",
     "name": "Neurous",
     "bpm": 175,
     "date": 1475775435000,
-    "genre": "Drum & Bass"
+    "genre": "Drum & Bass",
+    "rating": 1
   },
   {
     "id": "136",
     "name": "Dubpsilon",
     "bpm": 122,
     "date": 1483727498000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "137",
     "name": "Dublet",
     "bpm": 120,
     "date": 1483809067000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "138",
     "name": "Dubiosity",
     "bpm": 120,
     "date": 1484601513000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "139",
     "name": "Chord'on Bleu",
     "bpm": 126,
     "date": 1497302751000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "140",
     "name": "Sledge",
     "bpm": 126,
     "date": 1499098148000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "141",
@@ -991,14 +1108,16 @@
     "name": "O-Range",
     "bpm": 126,
     "date": 1505762964000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "143",
     "name": "Moon",
     "bpm": 120,
     "date": 1505926295000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "144",
@@ -1012,35 +1131,40 @@
     "name": "Micronicon",
     "bpm": 120,
     "date": 1506877850000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "146",
     "name": "Komplize",
     "bpm": 126,
     "date": 1509711481000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "147",
     "name": "Dubiously",
     "bpm": 130,
     "date": 1511191689000,
-    "genre": "Reggae"
+    "genre": "Reggae",
+    "rating": 2
   },
   {
     "id": "148",
     "name": "Disconnected",
     "bpm": 126,
     "date": 1512749104000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "149",
     "name": "Hilbert Space",
     "bpm": 126,
     "date": 1517853247000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "150",
@@ -1054,119 +1178,136 @@
     "name": "Atrix",
     "bpm": 140,
     "date": 1522948547000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 2
   },
   {
     "id": "152",
     "name": "Curved Space",
     "bpm": 120,
     "date": 1538060892000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "153",
     "name": "Underwater",
     "bpm": 120,
     "date": 1538323520000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "154",
     "name": "Space Walk",
     "bpm": 120,
     "date": 1539115512000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "155",
     "name": "Cupola",
     "bpm": 120,
     "date": 1539449831000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "156",
     "name": "Saturn",
     "bpm": 120,
     "date": 1539981802000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "157",
     "name": "Neptune",
     "bpm": 120,
     "date": 1541613967000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "158",
     "name": "Asteroid Mining",
     "bpm": 126,
     "date": 1542992699000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "159",
     "name": "Dub Fras Knas",
     "bpm": 140,
     "date": 1544037536000,
-    "genre": "Drum & Bass"
+    "genre": "Drum & Bass",
+    "rating": 1
   },
   {
     "id": "160",
     "name": "Jupiter",
     "bpm": 123,
     "date": 1549385613000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "161",
     "name": "Phoebe",
     "bpm": 128,
     "date": 1550078553000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "162",
     "name": "Mercury",
     "bpm": 120,
     "date": 1550666256000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "163",
     "name": "Vega",
     "bpm": 128,
     "date": 1551369907000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "164",
     "name": "Black Hole",
     "bpm": 128,
     "date": 1551533897000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "165",
     "name": "Phobos",
     "bpm": 45,
     "date": 1552379778000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "166",
     "name": "Starship Engine Ambient Noise",
     "bpm": 30,
     "date": 1552567693000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "167",
     "name": "Fractals",
     "bpm": 120,
     "date": 1559047887000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 2
   },
   {
     "id": "168",
@@ -1187,28 +1328,32 @@
     "name": "Texture",
     "bpm": 130,
     "date": 1569928070000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "171",
     "name": "Karacho",
     "bpm": 120,
     "date": 1571487112000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "172",
     "name": "Pegasus",
     "bpm": 120,
     "date": 1572548529000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "173",
     "name": "Another Visitor",
     "bpm": 145,
     "date": 1574954549000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 2
   },
   {
     "id": "174",
@@ -1222,153 +1367,175 @@
     "name": "Betelgeuse",
     "bpm": 128,
     "date": 1579627213000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "176",
     "name": "State vector",
     "bpm": 120,
     "date": 1579810553000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "177",
     "name": "Angular Momentum",
     "bpm": 126,
     "date": 1579972343000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "178",
     "name": "Adjointness",
     "bpm": 126,
     "date": 1581247883000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "179",
     "name": "Plug ' n ' Pray",
     "bpm": 128,
     "date": 1581609737000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "180",
     "name": "Floating",
     "bpm": 110,
     "date": 1583940128000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "181",
     "name": "Stress test",
     "bpm": 128,
     "date": 1585072652000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "182",
     "name": "Entanglement",
     "bpm": 120,
     "date": 1585688108000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "183",
     "name": "Moving Fields",
     "bpm": 126,
     "date": 1587066264000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "184",
     "name": "Non Gravitational Field",
     "bpm": 126,
     "date": 1587463494000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "185",
     "name": "Sending Probes to Space",
     "bpm": 120,
     "date": 1587823684000,
-    "genre": "Electro"
+    "genre": "Electro",
+    "rating": 3
   },
   {
     "id": "186",
     "name": "Sparks & Parks",
     "bpm": 120,
     "date": 1589278140000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "187",
     "name": "Klamottenkiste",
     "bpm": 126,
     "date": 1595605487000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 1
   },
   {
     "id": "188",
     "name": "Freeze",
     "bpm": 120,
     "date": 1596566702000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "189",
     "name": "Summer Rain",
     "bpm": 120,
     "date": 1598011586000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 2
   },
   {
     "id": "190",
     "name": "RAV Loop",
     "bpm": 104,
     "date": 1601551038000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 1
   },
   {
     "id": "191",
     "name": "Venus",
     "bpm": 60,
     "date": 1602064214000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 3
   },
   {
     "id": "192",
     "name": "The End of a Song",
     "bpm": 110,
     "date": 1602261087000,
-    "genre": "Synthwave"
+    "genre": "Synthwave",
+    "rating": 3
   },
   {
     "id": "193",
     "name": "Lullaby",
     "bpm": 119,
     "date": 1604591900000,
-    "genre": "Downtempo"
+    "genre": "Downtempo",
+    "rating": 2
   },
   {
     "id": "194",
     "name": "Composite Particles",
     "bpm": 126,
     "date": 1611164033000,
-    "genre": "Techno"
+    "genre": "Techno",
+    "rating": 3
   },
   {
     "id": "195",
     "name": "Piano #1",
     "bpm": 100,
     "date": 1619819753000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 2
   },
   {
     "id": "196",
     "name": "Piano #2",
     "bpm": 92,
     "date": 1619878409000,
-    "genre": "Ambient"
+    "genre": "Ambient",
+    "rating": 2
   }
 ]

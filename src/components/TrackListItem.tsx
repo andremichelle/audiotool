@@ -47,7 +47,8 @@ export const TrackListItem = memo(({
     const style = { "--color": track.color, "--progress": playbackProgress } as React.CSSProperties
 
     return (
-        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`} style={style} ref={item}>
+        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`} style={style} ref={item}
+             data-rating={"⭐".repeat(track.rating)}>
             <div className="cover">
                 <img src={track.tinyCoverURL} />
                 <img src={track.tinyCoverURL} />

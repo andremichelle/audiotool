@@ -46,6 +46,7 @@ export interface TrackJSON {
     bpm: number
     date: number
     genre: string
+    rating?: 0 | 1 | 2 | 3
 }
 
 export class Track implements Readonly<TrackJSON> {
@@ -54,13 +55,15 @@ export class Track implements Readonly<TrackJSON> {
     readonly bpm: number
     readonly date: number
     readonly genre: string
+    readonly rating: 0 | 1 | 2 | 3
 
-    constructor({ id, name, bpm, date, genre }: TrackJSON, readonly stages: Peaks.Stages) {
+    constructor({ id, name, bpm, date, genre, rating }: TrackJSON, readonly stages: Peaks.Stages) {
         this.id = id
         this.name = name
         this.bpm = bpm
         this.date = date
         this.genre = genre in Colors ? genre : panic("Unknown genre")
+        this.rating = rating ?? 0
     }
 
     get color(): string {return Colors[this.genre]}
