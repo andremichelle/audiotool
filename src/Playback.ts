@@ -25,7 +25,7 @@ export class Playback {
 
     #active: Option<Track> = Option.None
 
-    constructor() {}
+    constructor(readonly playlist: ReadonlyArray<Track>) {}
 
     toggle(track: Track): void {
         if (this.#active.contains(track)) {
@@ -44,6 +44,7 @@ export class Playback {
 
     eject(): void {
         this.active = Option.None
+        this.#audio.onended = null
         this.#audio.onplay = null
         this.#audio.onpause = null
         this.#audio.onerror = null
@@ -60,14 +61,16 @@ export class Playback {
     }
 
     #playUrl(url: string): void {
+        this.#audio.onended = () =>
+            this.#active.map(active => (this.playlist.findIndex(track => track === active) + 1) % this.playlist.length)
+                .ifSome(index => this.toggle(this.playlist[index]))
+        this.#audio.onplay = () => this.#notify({ type: "buffering" })
+        this.#audio.onpause = () => this.#notify({ type: "paused" })
         this.#audio.onerror = (event, _source, _lineno, _colno, error) => {
             const reason = error?.message ?? event instanceof Event ? "Unknown" : event
             console.log("onerror", reason)
             this.#notify({ type: "error", reason })
         }
-
-        this.#audio.onplay = () => this.#notify({ type: "buffering" })
-        this.#audio.onpause = () => this.#notify({ type: "paused" })
         this.#audio.onstalled = () => this.#notify({ type: "buffering" })
         this.#audio.ontimeupdate = () => this.#notify({
             type: "playing",
