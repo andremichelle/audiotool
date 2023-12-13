@@ -10,9 +10,15 @@ import { Playback } from "./Playback.ts"
 (async () => {
     const playback = new Playback()
     const stages = await Peaks.load("peaks.bin", 196)
-
     const tracks: ReadonlyArray<Track> = (data as ReadonlyArray<TrackData>)
         .map((data: TrackData, index: int) => new Track(data, stages[index]))
+
+    const genres = new Set()
+    for (const track of tracks) {
+        genres.add(track.genre)
+    }
+    console.log([...genres].map(x => `"${x}"`).join(","))
+
     ReactDOM.createRoot(document.getElementById("root")!).render(
         <React.StrictMode>
             <App tracks={tracks} playback={playback} />

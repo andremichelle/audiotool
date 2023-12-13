@@ -23,7 +23,6 @@ export const TrackListItem = memo(({
                                        playbackState
                                    }: TrackListItemProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const color = isActiveTrack ? "hsl(30,76%,85%)" : track.color
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -31,17 +30,19 @@ export const TrackListItem = memo(({
         const intersectionObserver = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
                 intersectionObserver.disconnect()
-                paint(canvas, track, color)
+                paint(canvas, track)
             }
         }, { threshold: 0.0 })
         intersectionObserver.observe(canvas)
         return () => intersectionObserver.disconnect()
-    }, [color, isActiveTrack, track])
+    }, [isActiveTrack, track])
 
-    const style = { "--color": color, "--progress": playbackProgress } as React.CSSProperties
+    const style = { "--color": track.color, "--progress": playbackProgress } as React.CSSProperties
 
     return (
-        <div className="track-list-item" style={style} onClick={() => playback.toggle(track)}>
+        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`}
+             style={style}
+             onClick={() => playback.toggle(track)}>
             <div className="cover">
                 <img src={track.coverURL} />
                 <img src={track.coverURL} />
@@ -65,17 +66,17 @@ export const TrackListItem = memo(({
         </div>)
 })
 
-const paint = (canvas: HTMLCanvasElement, track: Track, color: string): void => {
+const paint = (canvas: HTMLCanvasElement, track: Track): void => {
     const w = canvas.width = canvas.clientWidth * devicePixelRatio
     const h = canvas.height = canvas.clientHeight * devicePixelRatio
     const stages: Peaks.Stages = track.stages
     const context = canvas.getContext("2d")!
-    context.fillStyle = color
+    context.fillStyle = track.color
     context.beginPath()
     PeaksPainter.renderBlocks(context, stages, 0, {
         u0: 0, u1: stages.numFrames,
         v0: -1.5, v1: 1.5,
-        x0: 8, x1: w - 8, y0: 0, y1: h + 2
+        x0: 0, x1: w, y0: 0, y1: h + 2
     })
     context.fill()
 }
@@ -89,6 +90,8 @@ const playbackStateToIcon = (isCurrentTrack: boolean, playbackState: PlaybackSta
                 return "#playing"
             case PlaybackState.Paused:
                 return "#play"
+            case PlaybackState.Error:
+                return "#error"
         }
     }
     return "#play"

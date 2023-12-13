@@ -14,18 +14,20 @@ export type TrackListProps = {
 export const TrackList = ({ tracks, playback }: TrackListProps) => {
     const [activeTrack, setActiveTrack] = useState<Nullable<Track>>(null)
     const [activeTrackState, setActiveTrackState] = useState<PlaybackState>(PlaybackState.Playing)
-    const [activeTrackProgress, setActiveTrackProgress] = useState<unitValue>(0.5)
+    const [activeTrackProgress, setActiveTrackProgress] = useState<unitValue>(0.0)
 
     useEffect(() => {
         const subscription = playback.subscribe(event => {
             if (event.type === "activate") {
                 setActiveTrack(event.track.unwrapOrNull())
+                setActiveTrackProgress(0.0)
             } else if (event.type === "playing") {
                 setActiveTrackState(PlaybackState.Playing)
                 setActiveTrackProgress(event.progress)
             } else if (event.type === "paused") {
                 setActiveTrackState(PlaybackState.Paused)
             } else if (event.type === "error") {
+                setActiveTrackProgress(0.0)
                 setActiveTrackState(PlaybackState.Error)
             }
         })
