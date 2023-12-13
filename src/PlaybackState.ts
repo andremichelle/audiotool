@@ -1,3 +1,3 @@
 export enum PlaybackState {
-    Buffering, Paused, Playing
+    Buffering, Paused, Playing, Error
 }

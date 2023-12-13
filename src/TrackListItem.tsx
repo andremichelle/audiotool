@@ -1,23 +1,24 @@
 import "./TrackListItem.sass"
 import { Track } from "./track.ts"
-import React, { Dispatch, memo, SetStateAction, useEffect, useRef } from "react"
+import React, { memo, useEffect, useRef } from "react"
 import { PeaksPainter } from "./waveform.ts"
 import { Peaks } from "./common/peaks.ts"
-import { Nullable, unitValue } from "./common/lang.ts"
+import { unitValue } from "./common/lang.ts"
 import { PlaybackState } from "./PlaybackState.ts"
+import { Playback } from "./Playback.ts"
 
 export type TrackListItemProps = {
     track: Track
-    setActiveTrack: Dispatch<SetStateAction<Nullable<Track>>>
     isActiveTrack: boolean
+    playback: Playback
     playbackState: PlaybackState
     playbackProgress: unitValue
 }
 
 export const TrackListItem = memo(({
                                        track,
-                                       setActiveTrack,
                                        isActiveTrack,
+                                       playback,
                                        playbackProgress,
                                        playbackState
                                    }: TrackListItemProps) => {
@@ -35,12 +36,12 @@ export const TrackListItem = memo(({
         }, { threshold: 0.0 })
         intersectionObserver.observe(canvas)
         return () => intersectionObserver.disconnect()
-    }, [isActiveTrack])
+    }, [color, isActiveTrack, track])
 
     const style = { "--color": color, "--progress": playbackProgress } as React.CSSProperties
 
     return (
-        <div className="track-list-item" style={style} onClick={() => setActiveTrack(track)}>
+        <div className="track-list-item" style={style} onClick={() => playback.toggle(track)}>
             <div className="cover">
                 <img src={track.coverURL} />
                 <img src={track.coverURL} />

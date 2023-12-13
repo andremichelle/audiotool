@@ -6,7 +6,7 @@ import { Procedure, unitValue } from "./common/lang.ts"
 
 export type PlaybackEvent = {
     type: "activate"
-    value: Option<Track>
+    track: Option<Track>
 } | {
     type: "buffering"
 } | {
@@ -27,7 +27,15 @@ export class Playback {
 
     constructor() {}
 
-    play(track: Track): void {
+    toggle(track: Track): void {
+        if (this.#active.contains(track)) {
+            if (this.#audio.paused) {
+                this.#audio.play().catch()
+            } else {
+                this.#audio.pause()
+            }
+            return
+        }
         this.eject()
         this.active = Option.wrap(track)
         this.#notify({ type: "buffering" })
@@ -36,6 +44,8 @@ export class Playback {
 
     eject(): void {
         this.active = Option.None
+        this.#audio.onplay = null
+        this.#audio.onpause = null
         this.#audio.onerror = null
         this.#audio.onstalled = null
         this.#audio.ontimeupdate = null
@@ -46,7 +56,7 @@ export class Playback {
     get active(): Option<Track> {return this.#active}
     set active(value: Option<Track>) {
         this.#active = value
-        this.#notify({ type: "activate", value })
+        this.#notify({ type: "activate", track: value })
     }
 
     #playUrl(url: string): void {
@@ -55,6 +65,9 @@ export class Playback {
             console.log("onerror", reason)
             this.#notify({ type: "error", reason })
         }
+
+        this.#audio.onplay = () => this.#notify({ type: "buffering" })
+        this.#audio.onpause = () => this.#notify({ type: "paused" })
         this.#audio.onstalled = () => this.#notify({ type: "buffering" })
         this.#audio.ontimeupdate = () => this.#notify({
             type: "playing",
