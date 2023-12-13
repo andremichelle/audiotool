@@ -65,7 +65,8 @@ export class Track implements Readonly<TrackJSON> {
 
     get color(): string {return Colors[this.genre]}
     get mp3URL(): string {return `mp3/${this.id}.mp3`}
-    get coverURL(): string {return `cover/${this.id}.jpg`}
+    get coverURL(): string {return `cover/${this.id}.webp`}
+    get tinyCoverURL(): string {return `cover/${this.id}.tiny.webp`}
     get seconds(): number {return this.stages.numFrames / sampleRate}
     get dateString(): string {return formatDate(new Date(this.date))}
     get durationString(): string {
