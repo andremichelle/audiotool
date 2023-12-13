@@ -7,8 +7,10 @@ import { Peaks } from "./common/peaks.ts"
 import { Arrays } from "./common/arrays.ts"
 import { int } from "./common/lang.ts"
 import { ByteArrayInput } from "./common/data.ts"
+import { Playback } from "./Playback.ts"
 
 (async () => {
+    const playback = new Playback()
     const arrayBuffer = await fetch("peaks.bin").then(x => x.arrayBuffer())
     let position: int = 0 | 0
     const stages: Array<Peaks.Stages> = Arrays.create(() => {

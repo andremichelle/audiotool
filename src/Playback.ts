@@ -1,21 +1,68 @@
 import { Track } from "./track.ts"
 import { Option } from "./common/option.ts"
-import { PlaybackState } from "./PlaybackState.ts"
+import { Subscription } from "./common/terminable.ts"
+import { Notifier } from "./common/observers.ts"
+import { Procedure, unitValue } from "./common/lang.ts"
+
+export type PlaybackEvent = {
+    type: "activate"
+    value: Option<Track>
+} | {
+    type: "buffering"
+} | {
+    type: "playing"
+    progress: unitValue
+} | {
+    type: "paused"
+} | {
+    type: "error"
+    reason: string
+}
 
 export class Playback {
     readonly #audio = new Audio()
+    readonly #notifier = new Notifier<PlaybackEvent>
 
     #active: Option<Track> = Option.None
-    #state: PlaybackState = PlaybackState.Paused
-
-    // TODO Make observable
-    // TODO Merge PlaybackState & PlaybackProgress into union
 
     constructor() {}
 
     play(track: Track): void {
-        this.#active = Option.wrap(track)
-        this.#audio.src = track.mp3URL
+        this.eject()
+        this.active = Option.wrap(track)
+        this.#notify({ type: "buffering" })
+        this.#playUrl(track.mp3URL)
+    }
+
+    eject(): void {
+        this.active = Option.None
+        this.#audio.onerror = null
+        this.#audio.onstalled = null
+        this.#audio.ontimeupdate = null
+    }
+
+    subscribe(observer: Procedure<PlaybackEvent>): Subscription {return this.#notifier.subscribe(observer)}
+
+    get active(): Option<Track> {return this.#active}
+    set active(value: Option<Track>) {
+        this.#active = value
+        this.#notify({ type: "activate", value })
+    }
+
+    #playUrl(url: string): void {
+        this.#audio.onerror = (event, _source, _lineno, _colno, error) => {
+            const reason = error?.message ?? event instanceof Event ? "Unknown" : event
+            console.log("onerror", reason)
+            this.#notify({ type: "error", reason })
+        }
+        this.#audio.onstalled = () => this.#notify({ type: "buffering" })
+        this.#audio.ontimeupdate = () => this.#notify({
+            type: "playing",
+            progress: this.#audio.currentTime / this.#audio.duration
+        })
+        this.#audio.src = url
         this.#audio.play().catch()
     }
+
+    #notify(value: PlaybackEvent) {this.#notifier.notify(value)}
 }
