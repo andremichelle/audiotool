@@ -13,7 +13,7 @@ export const App = ({ tracks, playback }: AppProps) => {
             <main>
                 <div></div>
                 <TrackList tracks={tracks} playback={playback}></TrackList>
-                <Player />
+                <Player playback={playback} />
             </main>
             <footer></footer>
         </div>

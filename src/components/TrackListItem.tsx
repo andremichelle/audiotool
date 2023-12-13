@@ -22,6 +22,7 @@ export const TrackListItem = memo(({
                                        playbackProgress,
                                        playbackState
                                    }: TrackListItemProps) => {
+    const item = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
@@ -35,12 +36,18 @@ export const TrackListItem = memo(({
         }, { threshold: 0.0 })
         intersectionObserver.observe(canvas)
         return () => intersectionObserver.disconnect()
-    }, [isActiveTrack, track])
+    }, [track])
+
+    useEffect(() => {
+        if (isActiveTrack) {
+            item.current?.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" })
+        }
+    }, [isActiveTrack])
 
     const style = { "--color": track.color, "--progress": playbackProgress } as React.CSSProperties
 
     return (
-        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`} style={style}>
+        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`} style={style} ref={item}>
             <div className="cover">
                 <img src={track.coverURL} />
                 <img src={track.coverURL} />

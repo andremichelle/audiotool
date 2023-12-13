@@ -3,6 +3,7 @@ import { Option } from "./common/option.ts"
 import { Subscription } from "./common/terminable.ts"
 import { Notifier } from "./common/observers.ts"
 import { Procedure, unitValue } from "./common/lang.ts"
+import { MeterWorkletNode } from "./waa/meter-node.ts"
 
 export type PlaybackEvent = {
     state: "activate"
@@ -22,12 +23,32 @@ export type PlaybackEvent = {
 export type PlaybackState = PlaybackEvent["state"]
 
 export class Playback {
+    readonly #context: AudioContext
+    readonly #tracks: ReadonlyArray<Track>
+
     readonly #audio = new Audio()
+    readonly #meter: MeterWorkletNode
+    readonly #sourceNode: MediaElementAudioSourceNode
     readonly #notifier = new Notifier<PlaybackEvent>
 
     #active: Option<Track> = Option.None
 
-    constructor(readonly playlist: ReadonlyArray<Track>) {}
+    constructor(context: AudioContext, tracks: ReadonlyArray<Track>) {
+        this.#context = context
+        this.#tracks = tracks
+
+        this.#sourceNode = this.#context.createMediaElementSource(this.#audio)
+        this.#meter = new MeterWorkletNode(this.#context, 1, 2)
+
+        this.#sourceNode.connect(this.#meter)
+        this.#meter.connect(this.#context.destination)
+
+        if (this.#context.state !== "running") {
+            window.addEventListener("pointerdown", () => {
+                this.#context.resume().then(() => console.debug("AudioContext started")).catch()
+            }, { once: true })
+        }
+    }
 
     toggle(track: Track): void {
         if (this.#active.contains(track)) {
@@ -76,11 +97,12 @@ export class Playback {
         this.#active = value
         this.#notify({ state: "activate", track: value })
     }
+    get meter(): MeterWorkletNode {return this.#meter}
 
     #play(track: Track): void {
         this.#audio.onended = () =>
-            this.#active.map(active => (this.playlist.findIndex(track => track === active) + 1) % this.playlist.length)
-                .ifSome(index => this.toggle(this.playlist[index]))
+            this.#active.map(active => (this.#tracks.findIndex(track => track === active) + 1) % this.#tracks.length)
+                .ifSome(index => this.toggle(this.#tracks[index]))
         this.#audio.onplay = () => this.#notify({ state: "buffering" })
         this.#audio.onpause = () => this.#notify({ state: "paused" })
         this.#audio.onerror = (event, _source, _lineno, _colno, error) => this.#notify({

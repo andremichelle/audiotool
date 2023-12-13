@@ -6,8 +6,10 @@ import { Track, TrackJSON } from "./track.ts"
 import { Peaks } from "./common/peaks.ts"
 import { int } from "./common/lang.ts"
 import { Playback } from "./Playback.ts"
+import { MeterWorkletNode } from "./waa/meter-node.ts"
 
 // TODO
+//  Icon does not animate on Safari
 //  Keyboard Shortcuts
 //  Mobile
 //  Track download
@@ -18,10 +20,12 @@ import { Playback } from "./Playback.ts"
 //  Backend?
 
 (async () => {
+    const context = new AudioContext({ sampleRate: 44100, latencyHint: "playback" })
+    await MeterWorkletNode.load(context)
     const stages = await Peaks.load("peaks.bin", 196)
     const tracks: ReadonlyArray<Track> = (data as ReadonlyArray<TrackJSON>)
         .map((data: TrackJSON, index: int) => new Track(data, stages[index]))
-    const playback = new Playback(tracks)
+    const playback = new Playback(context, tracks)
 
     const genres = new Set()
     for (const track of tracks) {
