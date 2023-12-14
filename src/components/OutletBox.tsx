@@ -8,7 +8,7 @@ import { clamp } from "../common/math.ts"
 import { MeterValues } from "../waa/meter-node.ts"
 import { Checkbox } from "./Checkbox.tsx"
 
-import { Genres } from "../genres.ts"
+import { Genre, Genres } from "../genres.ts"
 import { TracksService } from "../TrackService.ts"
 
 export type PlayerProps = {
@@ -67,7 +67,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                 <canvas ref={canvasRef}></canvas>
             </div>
             <p>
-                Hi, I'm André Michelle, the originator of audiotool.com and a passionate web developer. For the last 16
+                Hi, I'm André Michelle, the originator of <a href="https://audiotool.com">audiotool.com</a> and a passionate web developer. For the last 16
                 years, I dedicated myself to enabling people to create music in the web for free.
             </p>
             <p>
@@ -75,15 +75,18 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                 failure, and the joy of moving forward.
             </p>
             <fieldset className="filter">
-                {Object.keys(Genres)
-                    .map(genre => <Checkbox label={genre} key={genre} onChange={(checked: boolean) => {
-                        if (checked) {
-                            tracksService.addInclusiveFilter(Genres[genre].filter)
-                        } else {
-                            tracksService.removeInclusiveFilter(Genres[genre].filter)
-                        }
-                    }} defaultChecked={true} />)}
+                {Object.entries(Genres)
+                    .map(([name, genre]: [string, Genre]) =>
+                        <Checkbox label={name} color={genre.color} key={name}
+                                  onChange={(checked: boolean) => {
+                                      if (checked) {
+                                          tracksService.addInclusiveFilter(genre.filter)
+                                      } else {
+                                          tracksService.removeInclusiveFilter(genre.filter)
+                                      }
+                                  }} defaultChecked={true} />)}
                 <Checkbox label={"At least one ★"}
+                          color="gray"
                           defaultChecked={true}
                           onChange={(checked: boolean) => {
                               if (checked) {
@@ -93,6 +96,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                               }
                           }} />
                 <Checkbox label={"Latest To Old"}
+                          color="gray"
                           onChange={(checked: boolean) => {
                               tracksService.reversed = checked
                           }} />

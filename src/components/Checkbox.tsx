@@ -4,11 +4,12 @@ import { Procedure } from "../common/lang.ts"
 
 export type CheckboxProps = {
     label: string
+    color?: string
     onChange: Procedure<boolean>
     defaultChecked?: boolean
 }
 
-export const Checkbox = ({ label, onChange, defaultChecked }: CheckboxProps) => {
+export const Checkbox = ({ label, color, onChange, defaultChecked }: CheckboxProps) => {
     const [isChecked, setIsChecked] = useState(defaultChecked ?? false)
 
     useEffect(() => onChange(isChecked), [onChange, isChecked])
@@ -23,7 +24,7 @@ export const Checkbox = ({ label, onChange, defaultChecked }: CheckboxProps) => 
                     <use href="#checkbox-false"></use>
                     <use href="#checkbox-true"></use>
                 </svg>
-                <span>{label}</span>
+                <span style={{ color: color ?? "inherit" }}>{label}</span>
             </label>
         </>
     )
