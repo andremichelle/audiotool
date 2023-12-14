@@ -53,8 +53,8 @@ export const TrackListItem = memo(({
                 <img src={track.tinyCoverURL} />
                 <img src={track.tinyCoverURL} />
             </div>
-            <div className="state">
-                <svg onClick={() => playback.toggle(track)}>
+            <div className="state" onClick={() => playback.toggle(track)}>
+                <svg>
                     <use href={playbackStateToIcon(isActiveTrack, playbackState)} />
                 </svg>
             </div>

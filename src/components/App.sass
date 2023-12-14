@@ -22,7 +22,8 @@ div.app
     mask-image: linear-gradient(black, transparent)
 
   main
-    height: calc(100% - 8em) // minus header and footer
+    // minus header and footer
+    min-height: calc(100% - 8em)
     display: grid
     grid-template-columns: 1fr min-content 1fr
     @include normal
