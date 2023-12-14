@@ -72,7 +72,7 @@ export const Player = ({ playback, tracksService }: PlayerProps) => {
             </p>
             <p>
                 Now, as I turn the page to embrace new challenges, this space serves as a museum of my past music on
-                audiotool. It's a showcase of dedication, creativity, failure, and the joy of moving forward.
+                audiotool. It's a history of dedication, creativity, failure, and the joy of moving forward.
             </p>
             <fieldset className="filter">
                 {Object.keys(Genres)
