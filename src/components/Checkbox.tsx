@@ -13,11 +13,18 @@ export const Checkbox = ({ label, onChange, defaultChecked }: CheckboxProps) => 
 
     useEffect(() => onChange(isChecked), [onChange, isChecked])
 
+    const id = crypto.randomUUID()
+
     return (
-        <label className="checkbox">
-            <input type="checkbox" checked={isChecked}
-                   onChange={() => setIsChecked(value => !value)} />
-            <span>{label}</span>
-        </label>
+        <>
+            <input type="checkbox" id={id} checked={isChecked} onChange={() => setIsChecked(value => !value)} />
+            <label className="checkbox" htmlFor={id}>
+                <svg>
+                    <use href="#checkbox-false"></use>
+                    <use href="#checkbox-true"></use>
+                </svg>
+                <span>{label}</span>
+            </label>
+        </>
     )
 }

@@ -1,3 +1,24 @@
+input[type=checkbox]
+  display: none
+
+  &:checked + label.checkbox > svg
+    > use:nth-child(1)
+      visibility: hidden
+
+    > use:nth-child(2)
+      visibility: visible
+
 label.checkbox
   display: flex
   align-items: center
+
+  > svg
+    margin-right: 0.75em
+    width: 1.5em
+    height: 1.5em
+
+    > use:nth-child(1)
+      visibility: visible
+
+    > use:nth-child(2)
+      visibility: hidden
