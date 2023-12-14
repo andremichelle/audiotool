@@ -40,11 +40,11 @@ export const TrackListItem = memo(({ track, isActiveTrack, playback }: TrackList
             playbackSubscription.own(playback.subscribe(event => {
                 setTrackState(event.state)
                 if (event.state === "playing") {
-                    progressRef.current?.style
-                        .setProperty("--progress", String(event.progress))
+                    progressRef.current?.style.setProperty("--progress", String(event.progress))
                 }
             }))
         } else {
+            progressRef.current?.style.setProperty("--progress", "0.0")
             playbackSubscription.terminate()
         }
         return () => playbackSubscription.terminate()
