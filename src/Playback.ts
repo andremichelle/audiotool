@@ -38,38 +38,11 @@ export class Playback {
         this.#tracks = tracks
 
         this.#audio = new Audio()
-        this.#audio.crossOrigin = "true"
         this.#sourceNode = this.#context.createMediaElementSource(this.#audio)
         this.#meter = new MeterWorkletNode(this.#context, 1, 2)
 
         this.#sourceNode.connect(this.#meter)
         this.#meter.connect(this.#context.destination)
-
-        console.debug("AudioElement")
-        console.debug(`autoplay: ${this.#audio.autoplay}`)
-        console.debug(`muted: ${this.#audio.muted}`)
-        console.debug(`defaultMuted: ${this.#audio.defaultMuted}`)
-
-        console.debug("MediaElementAudioSourceNode:")
-        console.debug(`channelCount: ${this.#sourceNode.channelCount}`)
-        console.debug(`channelInterpretation: ${this.#sourceNode.channelInterpretation}`)
-        console.debug(`channelCountMode: ${this.#sourceNode.channelCountMode}`)
-        console.debug(`numberOfInputs: ${this.#sourceNode.numberOfInputs}`)
-        console.debug(`numberOfOutputs: ${this.#sourceNode.numberOfOutputs}`)
-
-        console.debug("MeterWorkletNode:")
-        console.debug(`channelCount: ${this.#meter.channelCount}`)
-        console.debug(`channelInterpretation: ${this.#meter.channelInterpretation}`)
-        console.debug(`channelCountMode: ${this.#meter.channelCountMode}`)
-        console.debug(`numberOfInputs: ${this.#meter.numberOfInputs}`)
-        console.debug(`numberOfOutputs: ${this.#meter.numberOfOutputs}`)
-
-        console.debug("Destination:")
-        console.debug(`channelCount: ${this.#context.destination.channelCount}`)
-        console.debug(`channelInterpretation: ${this.#context.destination.channelInterpretation}`)
-        console.debug(`channelCountMode: ${this.#context.destination.channelCountMode}`)
-        console.debug(`numberOfInputs: ${this.#context.destination.numberOfInputs}`)
-        console.debug(`numberOfOutputs: ${this.#context.destination.numberOfOutputs}`)
     }
 
     toggle(track: Track): void {

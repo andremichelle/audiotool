@@ -23,30 +23,17 @@ import { MeterWorkletNode } from "./waa/meter-node.ts"
     console.debug("booting...")
 
     const context = new AudioContext({ latencyHint: "playback" })
-    console.debug(`state: ${context.state} (after creation)`)
     if (context.state === "suspended") {
-        console.debug(`state: ${context.state} (waiting for pointerdown)`)
-        const listener = (event: Event) => {
-            console.log(event.type)
-            console.debug(`state: ${context.state} (waiting for resume)`)
+        window.addEventListener("click", () => {
             context.resume()
                 .then(
                     () => console.debug("AudioContext resumed"),
                     reason => `AudioContext resume failed with '${reason}'`)
-            console.debug(`state: ${context.state} (after resume)`)
-        }
-        // window.addEventListener("pointerdown", listener, { once: true, capture: true })
-        window.addEventListener("click", listener, { once: true, capture: true })
-        // window.addEventListener("touchend", listener, { once: true, capture: true })
-        // window.addEventListener("focus", listener, { once: true, capture: true })
+        }, { once: true, capture: true })
     }
-    context.addEventListener("statechange", () => {
-        console.debug(`AudioContext.state changed to ${context.state}`)
-    })
     console.debug([
         `AudioContext.sample-rate: ${context.sampleRate}Hz`,
-        `AudioContext.baseLatency: ${context.baseLatency?.toFixed(3) ?? "N/A"}sec`,
-        `AudioContext.outputLatency: ${context.outputLatency ?? "N/A"}sec`
+        `AudioContext.baseLatency: ${context.baseLatency?.toFixed(3) ?? "N/A"}sec`
     ].join(", "))
     try {
         await MeterWorkletNode.load(context)
