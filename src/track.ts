@@ -6,7 +6,7 @@ const sampleRate = 44100 // the sample-rate at which the peaks were computed
 const Colors: Record<string, string> = {
     "Electro": "hsl(190, 60%, 40%)",
     "Techno": "hsl(0, 0%, 45%)",
-    "House": "hsl(45, 66%, 45%)",
+    "House": "hsl(45, 55%, 45%)",
     "Drum & Bass": "hsl(0, 50%, 50%)",
     "Reggae": "hsl(100, 60%, 45%)",
     "Downtempo": "hsl(210, 30%, 70%)",

@@ -5,6 +5,7 @@ import { Terminator } from "../common/terminable.ts"
 import { Mapping } from "../common/mapping.ts"
 import { gainToDb } from "../common/conversion.ts"
 import { clamp } from "../common/math.ts"
+import { MeterValues } from "../waa/meter-node.ts"
 
 export type PlayerProps = {
     playback: Playback
@@ -22,10 +23,13 @@ export const Player = ({ playback }: PlayerProps) => {
             const w = canvas.width = canvas.clientWidth * devicePixelRatio
             const h = canvas.height = canvas.clientHeight * devicePixelRatio
             const m = new Mapping.Linear(-48, 0)
-            subscription.own(playback.meter.subscribe(values => {
+            const observer = (values: Omit<MeterValues, "squares">) => {
                 const l = clamp(m.x(gainToDb(values.peaks[0][0])))
                 const r = clamp(m.x(gainToDb(values.peaks[0][1])))
                 context.clearRect(0, 0, w, h)
+                context.fillStyle = "#222"
+                context.fillRect(0, 0, w, h / 2 - 2)
+                context.fillRect(0, h / 2 + 1, w, h / 2)
                 context.fillStyle = "#333"
                 context.fillRect(0, 0, w * l, h / 2 - 2)
                 context.fillRect(0, h / 2 + 1, w * r, h / 2)
@@ -38,7 +42,9 @@ export const Player = ({ playback }: PlayerProps) => {
                 if (pr > 0.0) {
                     context.fillRect((w - 2) * pr, h / 2 + 1, 2, h / 2)
                 }
-            }))
+            }
+            observer({ peaks: [new Float32Array([0, 0])], peakHoldValue: [new Float32Array([0, 0])] })
+            subscription.own(playback.meter.subscribe(observer))
         })
         resizeObserver.observe(canvas)
         return () => {
@@ -56,10 +62,12 @@ export const Player = ({ playback }: PlayerProps) => {
                 <canvas ref={canvasRef}></canvas>
             </div>
             <p>
-                Hi, I'm André Michelle, the creator of audiotool and a passionate web developer. For 16 long years, I
-                dedicated myself to enabling people to create music on the web. This website is an archive of all the
-                tracks I've ever created in audiotool. Some of these tracks have turned not too bad, and I'm excited
-                to share them with you as a celebration of this chapter of my life.<br />
+                Hi, I'm André Michelle, the creator of audiotool and a passionate web developer. For the last 16 years,
+                I dedicated myself to enabling people to create music on the web for free. This website is an archive of
+                all the tracks I've ever created in audiotool. Some of these tracks have turned out not too bad, and I
+                like to share them with you as a celebration of this chapter of my life.
+            </p>
+            <p>
                 Now, as I turn the page to embrace new challenges, this space serves as a museum of my past works. It's
                 a showcase of dedication, creativity, and the joy of moving forward.
             </p>
