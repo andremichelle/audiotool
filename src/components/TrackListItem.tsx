@@ -24,6 +24,7 @@ export const TrackListItem = memo(({
                                    }: TrackListItemProps) => {
     const item = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
+    const progressRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -44,10 +45,12 @@ export const TrackListItem = memo(({
         }
     }, [isActiveTrack])
 
-    const style = { "--color": track.color, "--progress": playbackProgress } as React.CSSProperties
+    progressRef.current?.style.setProperty("--progress", String(playbackProgress))
+
+    const itemStyle = { "--color": track.color } as React.CSSProperties
 
     return (
-        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`} style={style} ref={item}
+        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`} style={itemStyle} ref={item}
              data-rating={"★".repeat(track.rating)}>
             <div className="cover">
                 <img src={track.tinyCoverURL} />
@@ -60,10 +63,12 @@ export const TrackListItem = memo(({
             </div>
             <div className="header">
                 <div className="name">{track.name}</div>
-                <div className="waveform" onClick={event => {
-                    const rect = event.currentTarget.getBoundingClientRect()
-                    playback.playTrackFrom(track, clamp((event.clientX - rect.left) / rect.width))
-                }}>
+                <div className="waveform"
+                     ref={progressRef}
+                     onClick={event => {
+                         const rect = event.currentTarget.getBoundingClientRect()
+                         playback.playTrackFrom(track, clamp((event.clientX - rect.left) / rect.width))
+                     }}>
                     <canvas ref={canvasRef}></canvas>
                 </div>
             </div>

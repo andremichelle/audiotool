@@ -1,8 +1,6 @@
 @import ../common
 
 .track-list-item
-  --progress: 0
-  --color: hsl(25, 76%, 57%)
   width: 100%
   display: grid
   grid-template-rows: 3em 1em
@@ -95,6 +93,7 @@
       text-overflow: fade
 
     > .waveform
+      --progress: 0.0
       flex: 0 0 1.25em
       height: 1.25em
       position: relative

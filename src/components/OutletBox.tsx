@@ -59,7 +59,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
     }, [playback])
 
     return (
-        <div className="player">
+        <div className="outlet-box">
             <h1>andré michelle</h1>
             <h2>audiotool discography</h2>
             <h3>2007 - 2023</h3>
@@ -67,12 +67,12 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                 <canvas ref={canvasRef}></canvas>
             </div>
             <p>
-                Hi, I'm André Michelle, the creator of audiotool and a passionate web developer. For the last 16 years,
-                I dedicated myself to enabling people to create music on the web for free.
+                Hi, I'm André Michelle, the originator of audiotool.com and a passionate web developer. For the last 16
+                years, I dedicated myself to enabling people to create music in the web for free.
             </p>
             <p>
-                Now, as I turn the page to embrace new challenges, this space serves as a museum of my own music on
-                audiotool. It's a history of creativity, dedication, failure, and the joy of moving forward.
+                This space serves as a museum of my own music on audiotool. It's a history of creativity, dedication,
+                failure, and the joy of moving forward.
             </p>
             <fieldset className="filter">
                 {Object.keys(Genres)
