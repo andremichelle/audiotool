@@ -4,6 +4,7 @@ import { Subscription } from "./common/terminable.ts"
 import { Notifier } from "./common/observers.ts"
 import { Procedure, unitValue } from "./common/lang.ts"
 import { MeterWorkletNode } from "./waa/meter-node.ts"
+import { TracksService } from "./track-service.ts"
 
 export type PlaybackEvent = {
     state: "activate"
@@ -24,7 +25,7 @@ export type PlaybackState = PlaybackEvent["state"]
 
 export class Playback {
     readonly #context: AudioContext
-    readonly #tracks: ReadonlyArray<Track>
+    readonly #tracks: TracksService
 
     readonly #audio: HTMLAudioElement
     readonly #meter: MeterWorkletNode
@@ -33,7 +34,7 @@ export class Playback {
 
     #active: Option<Track> = Option.None
 
-    constructor(context: AudioContext, tracks: ReadonlyArray<Track>) {
+    constructor(context: AudioContext, tracks: TracksService) {
         this.#context = context
         this.#tracks = tracks
 
@@ -95,9 +96,7 @@ export class Playback {
     get meter(): MeterWorkletNode {return this.#meter}
 
     #play(track: Track): void {
-        this.#audio.onended = () =>
-            this.#active.map(active => (this.#tracks.findIndex(track => track === active) + 1) % this.#tracks.length)
-                .ifSome(index => this.toggle(this.#tracks[index]))
+        this.#audio.onended = () => this.#tracks.successorOf(track)
         this.#audio.onplay = () => this.#notify({ state: "buffering" })
         this.#audio.onpause = () => this.#notify({ state: "paused" })
         this.#audio.onerror = (event, _source, _lineno, _colno, error) => this.#notify({

@@ -7,6 +7,7 @@ import { Peaks } from "./common/peaks.ts"
 import { int } from "./common/lang.ts"
 import { Playback } from "./Playback.ts"
 import { MeterWorkletNode } from "./waa/meter-node.ts"
+import { TracksService } from "./track-service.ts"
 
 // TODO
 //  Ellipses for names
@@ -42,17 +43,13 @@ import { MeterWorkletNode } from "./waa/meter-node.ts"
         return
     }
     const stages = await Peaks.load("peaks.bin", 196)
-    const tracks: ReadonlyArray<Track> = (data as ReadonlyArray<TrackJSON>)
-        .map((data: TrackJSON, index: int) => new Track(data, stages[index]))
-    const playback = new Playback(context, tracks)
+    const trackService: TracksService = new TracksService((data as ReadonlyArray<TrackJSON>)
+        .map((data: TrackJSON, index: int) => new Track(data, stages[index])))
+    const playback = new Playback(context, trackService)
 
-    const genres = new Set()
-    for (const track of tracks) {
-        genres.add(track.genre)
-    }
     ReactDOM.createRoot(document.getElementById("root")!)
         .render(
             <React.StrictMode>
-                <App tracks={tracks} playback={playback} />
+                <App trackService={trackService} playback={playback} />
             </React.StrictMode>)
 })()

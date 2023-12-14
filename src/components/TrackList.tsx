@@ -4,19 +4,21 @@ import { TrackListItem } from "./TrackListItem.tsx"
 import { useEffect, useState } from "react"
 import { Nullable, unitValue } from "../common/lang.ts"
 import { Playback, PlaybackState } from "../Playback.ts"
+import { TracksService } from "../track-service.ts"
 
 export type TrackListProps = {
-    tracks: ReadonlyArray<Track>
     playback: Playback
+    trackService: TracksService
 }
 
-export const TrackList = ({ tracks, playback }: TrackListProps) => {
+export const TrackList = ({ playback, trackService }: TrackListProps) => {
+    const [tracks, setTracks] = useState<ReadonlyArray<Track>>([])
     const [activeTrack, setActiveTrack] = useState<Nullable<Track>>(null)
     const [activeTrackState, setActiveTrackState] = useState<PlaybackState>("playing")
     const [activeTrackProgress, setActiveTrackProgress] = useState<unitValue>(0.0)
 
     useEffect(() => {
-        const subscription = playback.subscribe(event => {
+        const playbackSubscription = playback.subscribe(event => {
             if (event.state === "activate") {
                 setActiveTrack(event.track.unwrapOrNull())
                 setActiveTrackProgress(0.0)
@@ -33,8 +35,13 @@ export const TrackList = ({ tracks, playback }: TrackListProps) => {
             }
         })
         setActiveTrack(playback.active.unwrapOrNull())
-        return () => subscription.terminate()
-    }, [playback])
+        const trackServiceSubscription = trackService.subscribe(service => setTracks(service.tracks()))
+        setTracks(trackService.tracks())
+        return () => {
+            playbackSubscription.terminate()
+            trackServiceSubscription.terminate()
+        }
+    }, [playback, trackService])
 
     return (
         <div className="track-list">

@@ -1,18 +1,18 @@
 import "./App.sass"
 import { TrackList } from "./TrackList.tsx"
-import { Track } from "../track.ts"
 import { Playback } from "../Playback.ts"
 import { Player } from "./Player.tsx"
+import { TracksService } from "../track-service.ts"
 
-export type AppProps = { tracks: ReadonlyArray<Track>, playback: Playback }
+export type AppProps = { trackService: TracksService, playback: Playback }
 
-export const App = ({ tracks, playback }: AppProps) => {
+export const App = ({ trackService, playback }: AppProps) => {
     return (
         <div className="app">
             <header></header>
             <main>
                 <div></div>
-                <TrackList tracks={tracks} playback={playback}></TrackList>
+                <TrackList trackService={trackService} playback={playback}></TrackList>
                 <Player playback={playback} />
             </main>
             <footer></footer>
