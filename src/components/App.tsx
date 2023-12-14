@@ -2,7 +2,7 @@ import "./App.sass"
 import { TrackList } from "./TrackList.tsx"
 import { Playback } from "../Playback.ts"
 import { Player } from "./Player.tsx"
-import { TracksService } from "../track-service.ts"
+import { TracksService } from "../TrackService.ts"
 
 export type AppProps = { tracksService: TracksService, playback: Playback }
 
@@ -12,7 +12,7 @@ export const App = ({ tracksService, playback }: AppProps) => {
             <header></header>
             <main>
                 <div></div>
-                <TrackList trackService={tracksService} playback={playback}></TrackList>
+                <TrackList tracksService={tracksService} playback={playback}></TrackList>
                 <Player playback={playback} tracksService={tracksService} />
             </main>
             <footer></footer>

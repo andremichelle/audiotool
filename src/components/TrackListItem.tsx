@@ -1,11 +1,11 @@
 import "./TrackListItem.sass"
-import { Track } from "../track.ts"
 import React, { memo, useEffect, useRef } from "react"
 import { PeaksPainter } from "../waveform.ts"
 import { Peaks } from "../common/peaks.ts"
 import { unitValue } from "../common/lang.ts"
 import { Playback, PlaybackState } from "../Playback.ts"
 import { clamp } from "../common/math.ts"
+import { Track } from "../Track.ts"
 
 export type TrackListItemProps = {
     track: Track

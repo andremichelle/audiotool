@@ -2,12 +2,12 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import { App } from "./components/App.tsx"
 import data from "./data.json"
-import { Track, TrackJSON } from "./track.ts"
 import { Peaks } from "./common/peaks.ts"
 import { int } from "./common/lang.ts"
 import { Playback } from "./Playback.ts"
 import { MeterWorkletNode } from "./waa/meter-node.ts"
-import { TracksService } from "./track-service.ts"
+import { TracksService } from "./TrackService.ts"
+import { Track, TrackJSON } from "./Track.ts"
 
 // TODO
 //  Ellipses for names

@@ -1,17 +1,17 @@
 import "./TrackList.sass"
-import { Track } from "../track.ts"
 import { TrackListItem } from "./TrackListItem.tsx"
 import { useEffect, useState } from "react"
 import { Nullable, unitValue } from "../common/lang.ts"
 import { Playback, PlaybackState } from "../Playback.ts"
-import { TracksService } from "../track-service.ts"
+import { TracksService } from "../TrackService.ts"
+import { Track } from "../Track.ts"
 
 export type TrackListProps = {
     playback: Playback
-    trackService: TracksService
+    tracksService: TracksService
 }
 
-export const TrackList = ({ playback, trackService }: TrackListProps) => {
+export const TrackList = ({ playback, tracksService }: TrackListProps) => {
     const [tracks, setTracks] = useState<ReadonlyArray<Track>>([])
     const [activeTrack, setActiveTrack] = useState<Nullable<Track>>(null)
     const [activeTrackState, setActiveTrackState] = useState<PlaybackState>("playing")
@@ -35,13 +35,13 @@ export const TrackList = ({ playback, trackService }: TrackListProps) => {
             }
         })
         setActiveTrack(playback.active.unwrapOrNull())
-        const trackServiceSubscription = trackService.subscribe(service => setTracks(service.tracks()))
-        setTracks(trackService.tracks())
+        const trackServiceSubscription = tracksService.subscribe(service => setTracks(service.tracks()))
+        setTracks(tracksService.tracks())
         return () => {
             playbackSubscription.terminate()
             trackServiceSubscription.terminate()
         }
-    }, [playback, trackService])
+    }, [playback, tracksService])
 
     return (
         <div className="track-list">

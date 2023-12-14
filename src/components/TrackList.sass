@@ -4,6 +4,12 @@
   flex-direction: column
   row-gap: 1em
   padding: 0 1em
+  min-width: 24em
   max-width: 24em
   width: min-content
   margin: 0 auto
+
+  &:empty:after
+    opacity: 0.5
+    font-size: 0.75em
+    content: "no tracks available. try relaxing the filters."

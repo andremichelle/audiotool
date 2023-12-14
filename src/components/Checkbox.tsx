@@ -5,10 +5,11 @@ import { Procedure } from "../common/lang.ts"
 export type CheckboxProps = {
     label: string
     onChange: Procedure<boolean>
+    defaultChecked?: boolean
 }
 
-export const Checkbox = ({ label, onChange }: CheckboxProps) => {
-    const [isChecked, setIsChecked] = useState(true)
+export const Checkbox = ({ label, onChange, defaultChecked }: CheckboxProps) => {
+    const [isChecked, setIsChecked] = useState(defaultChecked ?? false)
 
     useEffect(() => onChange(isChecked), [onChange, isChecked])
 

@@ -1,5 +1,5 @@
 import { Predicate } from "./common/lang.ts"
-import { Track } from "./track.ts"
+import { Track } from "./Track.ts"
 
 export type Genre = { name: string, color: string, filter: Predicate<Track> }
 

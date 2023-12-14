@@ -9,7 +9,7 @@ import { MeterValues } from "../waa/meter-node.ts"
 import { Checkbox } from "./Checkbox.tsx"
 
 import { Genres } from "../genres.ts"
-import { TracksService } from "../track-service.ts"
+import { TracksService } from "../TrackService.ts"
 
 export type PlayerProps = {
     playback: Playback
@@ -68,13 +68,11 @@ export const Player = ({ playback, tracksService }: PlayerProps) => {
             </div>
             <p>
                 Hi, I'm André Michelle, the creator of audiotool and a passionate web developer. For the last 16 years,
-                I dedicated myself to enabling people to create music on the web for free. This website is an archive of
-                all the tracks I've ever created in audiotool. Some of these tracks have turned out not too bad, and I
-                like to share them with you as a celebration of this chapter of my life.
+                I dedicated myself to enabling people to create music on the web for free.
             </p>
             <p>
-                Now, as I turn the page to embrace new challenges, this space serves as a museum of my past works. It's
-                a showcase of dedication, creativity, and the joy of moving forward.
+                Now, as I turn the page to embrace new challenges, this space serves as a museum of my past music on
+                audiotool. It's a showcase of dedication, creativity, failure, and the joy of moving forward.
             </p>
             <fieldset className="filter">
                 {Object.keys(Genres)
@@ -84,7 +82,14 @@ export const Player = ({ playback, tracksService }: PlayerProps) => {
                         } else {
                             tracksService.removeInclusiveFilter(Genres[genre].filter)
                         }
-                    }} />)}
+                    }} defaultChecked={true} />)}
+                <Checkbox label={"At least one ★"} key="star" onChange={(checked: boolean) => {
+                    if (checked) {
+                        tracksService.addExclusiveFilter(TracksService.AtLeastOneStar)
+                    } else {
+                        tracksService.removeExclusiveFilter(TracksService.AtLeastOneStar)
+                    }
+                }} />
             </fieldset>
         </div>
     )
