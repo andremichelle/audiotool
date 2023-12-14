@@ -1,30 +1,24 @@
 import "./TrackListItem.sass"
-import React, { memo, useEffect, useRef } from "react"
+import React, { memo, useEffect, useRef, useState } from "react"
 import { PeaksPainter } from "../waveform.ts"
 import { Peaks } from "../common/peaks.ts"
-import { unitValue } from "../common/lang.ts"
 import { PlaybackService, PlaybackState } from "../PlaybackService.ts"
 import { clamp } from "../common/math.ts"
 import { Track } from "../Track.ts"
+import { Terminator } from "../common/terminable.ts"
 
 export type TrackListItemProps = {
     track: Track
-    isActiveTrack: boolean
     playback: PlaybackService
-    playbackState: PlaybackState
-    playbackProgress: unitValue
+    isActiveTrack: boolean
 }
 
-export const TrackListItem = memo(({
-                                       track,
-                                       isActiveTrack,
-                                       playback,
-                                       playbackProgress,
-                                       playbackState
-                                   }: TrackListItemProps) => {
+export const TrackListItem = memo(({ track, isActiveTrack, playback }: TrackListItemProps) => {
     const item = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const progressRef = useRef<HTMLDivElement>(null)
+
+    const [trackState, setTrackState] = useState<PlaybackState>("playing")
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -40,17 +34,31 @@ export const TrackListItem = memo(({
     }, [track])
 
     useEffect(() => {
+        const playbackSubscription = new Terminator()
         if (isActiveTrack) {
             item.current?.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" })
+            playbackSubscription.own(playback.subscribe(event => {
+                if (event.state === "playing") {
+                    setTrackState(event.state)
+                    progressRef.current?.style.setProperty("--progress", String(event.progress))
+                } else if (event.state === "buffering") {
+                    setTrackState(event.state)
+                } else if (event.state === "paused") {
+                    setTrackState(event.state)
+                } else if (event.state === "error") {
+                    setTrackState(event.state)
+                }
+            }))
+        } else {
+            playbackSubscription.terminate()
         }
-    }, [isActiveTrack])
-
-    progressRef.current?.style.setProperty("--progress", String(playbackProgress))
-
-    const itemStyle = { "--color": track.color } as React.CSSProperties
+        return () => playbackSubscription.terminate()
+    }, [isActiveTrack, playback])
 
     return (
-        <div className={`track-list-item ${isActiveTrack ? "active" : ""}`} style={itemStyle} ref={item}
+        <div className={["track-list-item", ...(isActiveTrack ? ["active"] : [])].join(" ")}
+             ref={item}
+             style={{ "--color": track.color } as React.CSSProperties}
              data-rating={"★".repeat(track.rating)}>
             <div className="cover">
                 <img src={track.tinyCoverURL} />
@@ -58,7 +66,7 @@ export const TrackListItem = memo(({
             </div>
             <div className="state" onClick={() => playback.toggle(track)}>
                 <svg>
-                    <use href={playbackStateToIcon(isActiveTrack, playbackState)} />
+                    <use href={playbackStateToIcon(isActiveTrack, trackState)} />
                 </svg>
             </div>
             <div className="header">
