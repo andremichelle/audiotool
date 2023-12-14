@@ -26,14 +26,19 @@ import { MeterWorkletNode } from "./waa/meter-node.ts"
     console.debug(`state: ${context.state} (after creation)`)
     if (context.state === "suspended") {
         console.debug(`state: ${context.state} (waiting for pointerdown)`)
-        window.addEventListener("pointerdown", () => {
+        const listener = (event: Event) => {
+            console.log(event.type)
             console.debug(`state: ${context.state} (waiting for resume)`)
             context.resume()
                 .then(
                     () => console.debug("AudioContext resumed"),
                     reason => `AudioContext resume failed with '${reason}'`)
             console.debug(`state: ${context.state} (after resume)`)
-        }, { once: true, capture: true })
+        }
+        window.addEventListener("pointerdown", listener, { once: true, capture: true })
+        window.addEventListener("click", listener, { once: true, capture: true })
+        window.addEventListener("touchend", listener, { once: true, capture: true })
+        window.addEventListener("focus", listener, { once: true, capture: true })
     }
     context.addEventListener("statechange", () => {
         console.debug(`AudioContext.state changed to ${context.state}`)
