@@ -22,7 +22,14 @@ import { MeterWorkletNode } from "./waa/meter-node.ts"
 
 (async () => {
     const context = new AudioContext({ sampleRate: 44100, latencyHint: "playback" })
-    await MeterWorkletNode.load(context)
+    console.debug("MeterWorkletNode.load")
+    try {
+        await MeterWorkletNode.load(context)
+    } catch(reason) {
+        console.debug("MeterWorkletNode failed with", reason)
+        return
+    }
+    console.debug("MeterWorkletNode.loaded")
     const stages = await Peaks.load("peaks.bin", 196)
     const tracks: ReadonlyArray<Track> = (data as ReadonlyArray<TrackJSON>)
         .map((data: TrackJSON, index: int) => new Track(data, stages[index]))

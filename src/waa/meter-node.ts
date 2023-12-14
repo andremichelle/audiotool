@@ -1,9 +1,9 @@
 import { Arrays } from "../common/arrays"
-import { src } from "../src-path"
 import { UpdateMeterMessage } from "./meter-message"
 import { Notifier } from "../common/observers.ts"
 import { Procedure } from "../common/lang.ts"
 import { Subscription } from "../common/terminable.ts"
+import WorkletUrl from "../worklet/meter.ts?worker&url"
 
 export type MeterValues = {
     readonly peaks: Float32Array[]
@@ -13,7 +13,8 @@ export type MeterValues = {
 
 export class MeterWorkletNode extends AudioWorkletNode {
     static load(context: BaseAudioContext): Promise<void> {
-        return context.audioWorklet.addModule(new URL("./worklet/meter.ts", src))
+        console.debug(`Load ${MeterWorkletNode.name} from ${WorkletUrl}`)
+        return context.audioWorklet.addModule(WorkletUrl)
     }
 
     static readonly PEAK_HOLD_DURATION: number = 1000.0
