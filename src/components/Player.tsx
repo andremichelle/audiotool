@@ -6,12 +6,17 @@ import { Mapping } from "../common/mapping.ts"
 import { gainToDb } from "../common/conversion.ts"
 import { clamp } from "../common/math.ts"
 import { MeterValues } from "../waa/meter-node.ts"
+import { Checkbox } from "./Checkbox.tsx"
+
+import { Genres } from "../genres.ts"
+import { TracksService } from "../track-service.ts"
 
 export type PlayerProps = {
     playback: Playback
+    tracksService: TracksService
 }
 
-export const Player = ({ playback }: PlayerProps) => {
+export const Player = ({ playback, tracksService }: PlayerProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     useEffect(() => {
         const canvas = canvasRef.current
@@ -71,6 +76,16 @@ export const Player = ({ playback }: PlayerProps) => {
                 Now, as I turn the page to embrace new challenges, this space serves as a museum of my past works. It's
                 a showcase of dedication, creativity, and the joy of moving forward.
             </p>
+            <fieldset className="filter">
+                {Object.keys(Genres)
+                    .map(genre => <Checkbox label={genre} key={genre} onChange={(checked: boolean) => {
+                        if (checked) {
+                            tracksService.addInclusiveFilter(Genres[genre].filter)
+                        } else {
+                            tracksService.removeInclusiveFilter(Genres[genre].filter)
+                        }
+                    }} />)}
+            </fieldset>
         </div>
     )
 }

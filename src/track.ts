@@ -1,20 +1,8 @@
 import { Peaks } from "./common/peaks.ts"
 import { panic } from "./common/lang.ts"
+import { Genres } from "./genres.ts"
 
 const sampleRate = 44100 // the sample-rate at which the peaks were computed
-
-const Colors: Record<string, string> = {
-    "Electro": "hsl(190, 60%, 40%)",
-    "Techno": "hsl(0, 0%, 45%)",
-    "House": "hsl(45, 55%, 45%)",
-    "Drum & Bass": "hsl(0, 50%, 50%)",
-    "Reggae": "hsl(100, 60%, 45%)",
-    "Downtempo": "hsl(210, 30%, 70%)",
-    "Ambient": "hsl(197, 71%, 65%)",
-    "Future Bass": "hsl(300, 40%, 50%)",
-    "Experimental": "hsl(260, 50%, 50%)",
-    "Synthwave": "hsl(275, 60%, 70%)"
-}
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 const formatDate = (date: Date): string => {
@@ -62,11 +50,11 @@ export class Track implements Readonly<TrackJSON> {
         this.name = name
         this.bpm = bpm
         this.date = date
-        this.genre = genre in Colors ? genre : panic("Unknown genre")
+        this.genre = genre in Genres ? genre : panic("Unknown genre")
         this.rating = rating ?? 0
     }
 
-    get color(): string {return Colors[this.genre]}
+    get color(): string {return Genres[this.genre].color}
     get mp3URL(): string {return `mp3/${this.id}.mp3`}
     get coverURL(): string {return `cover/${this.id}.webp`}
     get tinyCoverURL(): string {return `cover/${this.id}.tiny.webp`}

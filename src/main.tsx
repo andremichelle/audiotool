@@ -43,13 +43,13 @@ import { TracksService } from "./track-service.ts"
         return
     }
     const stages = await Peaks.load("peaks.bin", 196)
-    const trackService: TracksService = new TracksService((data as ReadonlyArray<TrackJSON>)
+    const tracksService: TracksService = new TracksService((data as ReadonlyArray<TrackJSON>)
         .map((data: TrackJSON, index: int) => new Track(data, stages[index])))
-    const playback = new Playback(context, trackService)
+    const playback = new Playback(context, tracksService)
 
     ReactDOM.createRoot(document.getElementById("root")!)
         .render(
             <React.StrictMode>
-                <App trackService={trackService} playback={playback} />
+                <App tracksService={tracksService} playback={playback} />
             </React.StrictMode>)
 })()

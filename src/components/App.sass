@@ -10,6 +10,7 @@
     font-size: 12px
 
 div.app
+  height: 100%
   position: relative
 
   header
@@ -21,6 +22,7 @@ div.app
     mask-image: linear-gradient(black, transparent)
 
   main
+    height: calc(100% - 8em) // minus header and footer
     display: grid
     grid-template-columns: 1fr min-content 1fr
     @include normal
