@@ -1,1 +1,0 @@
-export const src = import.meta.url

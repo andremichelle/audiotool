@@ -12,7 +12,6 @@ import { MeterWorkletNode } from "./waa/meter-node.ts"
 //  Ellipses for names
 //  Icon does not animate on Safari
 //  Keyboard Shortcuts
-//  Mobile
 //  Track download
 //  Track rating
 //  Main Player with visuals
@@ -21,15 +20,22 @@ import { MeterWorkletNode } from "./waa/meter-node.ts"
 //  Backend?
 
 (async () => {
-    const context = new AudioContext({ sampleRate: 44100, latencyHint: "playback" })
-    console.debug("MeterWorkletNode.load")
+    console.debug("booting...")
+    const context = new AudioContext({ latencyHint: "playback" })
+    context.addEventListener("statechange", () => {
+        console.debug(`AudioContext.state changed to ${context.state}`)
+    })
+    console.debug([
+        `AudioContext.sample-rate: ${context.sampleRate}Hz`,
+        `AudioContext.baseLatency: ${context.baseLatency ?? "N/A"}sec`,
+        `AudioContext.outputLatency: ${context.outputLatency ?? "N/A"}sec`
+    ].join(", "))
     try {
         await MeterWorkletNode.load(context)
-    } catch(reason) {
-        console.debug("MeterWorkletNode failed with", reason)
+    } catch (reason) {
+        console.error(`Loading ${MeterWorkletNode.name} failed with`, reason)
         return
     }
-    console.debug("MeterWorkletNode.loaded")
     const stages = await Peaks.load("peaks.bin", 196)
     const tracks: ReadonlyArray<Track> = (data as ReadonlyArray<TrackJSON>)
         .map((data: TrackJSON, index: int) => new Track(data, stages[index]))

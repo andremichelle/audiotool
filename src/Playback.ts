@@ -43,9 +43,33 @@ export class Playback {
         this.#sourceNode.connect(this.#meter)
         this.#meter.connect(this.#context.destination)
 
+        console.debug("MediaElementAudioSourceNode:")
+        console.debug(`channelCount: ${this.#sourceNode.channelCount}`)
+        console.debug(`channelInterpretation: ${this.#sourceNode.channelInterpretation}`)
+        console.debug(`channelCountMode: ${this.#sourceNode.channelCountMode}`)
+        console.debug(`numberOfInputs: ${this.#sourceNode.numberOfInputs}`)
+        console.debug(`numberOfOutputs: ${this.#sourceNode.numberOfOutputs}`)
+
+        console.debug("MeterWorkletNode:")
+        console.debug(`channelCount: ${this.#meter.channelCount}`)
+        console.debug(`channelInterpretation: ${this.#meter.channelInterpretation}`)
+        console.debug(`channelCountMode: ${this.#meter.channelCountMode}`)
+        console.debug(`numberOfInputs: ${this.#meter.numberOfInputs}`)
+        console.debug(`numberOfOutputs: ${this.#meter.numberOfOutputs}`)
+
+        console.debug("Destination:")
+        console.debug(`channelCount: ${this.#context.destination.channelCount}`)
+        console.debug(`channelInterpretation: ${this.#context.destination.channelInterpretation}`)
+        console.debug(`channelCountMode: ${this.#context.destination.channelCountMode}`)
+        console.debug(`numberOfInputs: ${this.#context.destination.numberOfInputs}`)
+        console.debug(`numberOfOutputs: ${this.#context.destination.numberOfOutputs}`)
+
         if (this.#context.state !== "running") {
             window.addEventListener("pointerdown", () => {
-                this.#context.resume().then(() => console.debug("AudioContext started")).catch()
+                console.debug("AudioContext.resume()")
+                this.#context.resume()
+                    .then(() => console.debug("AudioContext resumed"))
+                    .catch(reason => `AudioContext resume failed with '${reason}'`)
             }, { once: true })
         }
     }
@@ -53,7 +77,7 @@ export class Playback {
     toggle(track: Track): void {
         if (this.#active.contains(track)) {
             if (this.#audio.paused) {
-                this.#audio.play().catch()
+                this.#audio.play().catch(reason => console.debug(`Could not play audio due to '${reason}'`))
             } else {
                 this.#audio.pause()
             }

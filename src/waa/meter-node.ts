@@ -13,7 +13,6 @@ export type MeterValues = {
 
 export class MeterWorkletNode extends AudioWorkletNode {
     static load(context: BaseAudioContext): Promise<void> {
-        console.debug(`Load ${MeterWorkletNode.name} from ${WorkletUrl}`)
         return context.audioWorklet.addModule(WorkletUrl)
     }
 
