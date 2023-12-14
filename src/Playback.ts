@@ -63,15 +63,6 @@ export class Playback {
         console.debug(`channelCountMode: ${this.#context.destination.channelCountMode}`)
         console.debug(`numberOfInputs: ${this.#context.destination.numberOfInputs}`)
         console.debug(`numberOfOutputs: ${this.#context.destination.numberOfOutputs}`)
-
-        if (this.#context.state !== "running") {
-            window.addEventListener("pointerdown", () => {
-                console.debug("AudioContext.resume()")
-                this.#context.resume()
-                    .then(() => console.debug("AudioContext resumed"))
-                    .catch(reason => `AudioContext resume failed with '${reason}'`)
-            }, { once: true })
-        }
     }
 
     toggle(track: Track): void {
