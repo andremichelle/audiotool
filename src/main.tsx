@@ -21,8 +21,10 @@ import { MeterWorkletNode } from "./waa/meter-node.ts"
 
 (async () => {
     console.debug("booting...")
+
     const context = new AudioContext({ latencyHint: "playback" })
-    if (context.state !== "running") {
+    console.debug(`state: ${context.state} (after creation)`)
+    if (context.state === "suspended") {
         console.debug(`state: ${context.state} (waiting for pointerdown)`)
         window.addEventListener("pointerdown", () => {
             console.debug(`state: ${context.state} (waiting for resume)`)

@@ -26,7 +26,7 @@ export class Playback {
     readonly #context: AudioContext
     readonly #tracks: ReadonlyArray<Track>
 
-    readonly #audio = new Audio()
+    readonly #audio: HTMLAudioElement
     readonly #meter: MeterWorkletNode
     readonly #sourceNode: MediaElementAudioSourceNode
     readonly #notifier = new Notifier<PlaybackEvent>
@@ -37,11 +37,18 @@ export class Playback {
         this.#context = context
         this.#tracks = tracks
 
+        this.#audio = new Audio()
+        this.#audio.crossOrigin = "true"
         this.#sourceNode = this.#context.createMediaElementSource(this.#audio)
         this.#meter = new MeterWorkletNode(this.#context, 1, 2)
 
         this.#sourceNode.connect(this.#meter)
         this.#meter.connect(this.#context.destination)
+
+        console.debug("AudioElement")
+        console.debug(`autoplay: ${this.#audio.autoplay}`)
+        console.debug(`muted: ${this.#audio.muted}`)
+        console.debug(`defaultMuted: ${this.#audio.defaultMuted}`)
 
         console.debug("MediaElementAudioSourceNode:")
         console.debug(`channelCount: ${this.#sourceNode.channelCount}`)
