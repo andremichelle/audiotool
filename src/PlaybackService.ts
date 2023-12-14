@@ -23,7 +23,7 @@ export type PlaybackEvent = {
 
 export type PlaybackState = PlaybackEvent["state"]
 
-export class Playback {
+export class PlaybackService {
     readonly #context: AudioContext
     readonly #tracksService: TracksService
 

@@ -14,6 +14,8 @@ export class TracksService {
     #inclusiveFilters: Array<Predicate<Track>> = []
     #exclusiveFilters: Array<Predicate<Track>> = []
 
+    #reversed: boolean = false
+
     readonly #combinedFilter: Predicate<Track> = (track: Track) =>
         this.#inclusiveFilters.some(filter => filter(track))
         && this.#exclusiveFilters.every(filter => filter(track))
@@ -24,7 +26,7 @@ export class TracksService {
     }
 
     successorOf(track: Track): Option<Track> {
-        const tracks = this.#tracks
+        const tracks = this.#reversed ? this.#tracks.toReversed() : this.#tracks
         const index = tracks.indexOf(track)
         if (-1 === index) {return panic(`${track} is not part of track-list`)}
         for (let i = 1; i <= tracks.length; i++) {
@@ -36,7 +38,17 @@ export class TracksService {
         return Option.None
     }
 
-    tracks(): ReadonlyArray<Track> {return this.#tracks.filter(track => this.#combinedFilter(track))}
+    tracks(): ReadonlyArray<Track> {
+        const tracks = this.#tracks.filter(track => this.#combinedFilter(track))
+        return this.#reversed ? tracks.toReversed() : tracks
+    }
+
+    get reversed(): boolean {return this.#reversed}
+    set reversed(value: boolean) {
+        if (this.#reversed === value) {return}
+        this.#reversed = value
+        this.#notifier.notify(this)
+    }
 
     addInclusiveFilter(filter: Predicate<Track>): void {
         if (this.#inclusiveFilters.includes(filter)) {return}

@@ -2,12 +2,12 @@ import "./TrackList.sass"
 import { TrackListItem } from "./TrackListItem.tsx"
 import { useEffect, useState } from "react"
 import { Nullable, unitValue } from "../common/lang.ts"
-import { Playback, PlaybackState } from "../Playback.ts"
+import { PlaybackService, PlaybackState } from "../PlaybackService.ts"
 import { TracksService } from "../TrackService.ts"
 import { Track } from "../Track.ts"
 
 export type TrackListProps = {
-    playback: Playback
+    playback: PlaybackService
     tracksService: TracksService
 }
 

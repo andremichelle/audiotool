@@ -1,5 +1,5 @@
-import "./Player.sass"
-import { Playback } from "../Playback.ts"
+import "./OutletBox.sass"
+import { PlaybackService } from "../PlaybackService.ts"
 import { useEffect, useRef } from "react"
 import { Terminator } from "../common/terminable.ts"
 import { Mapping } from "../common/mapping.ts"
@@ -12,11 +12,11 @@ import { Genres } from "../genres.ts"
 import { TracksService } from "../TrackService.ts"
 
 export type PlayerProps = {
-    playback: Playback
+    playback: PlaybackService
     tracksService: TracksService
 }
 
-export const Player = ({ playback, tracksService }: PlayerProps) => {
+export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     useEffect(() => {
         const canvas = canvasRef.current
@@ -71,8 +71,8 @@ export const Player = ({ playback, tracksService }: PlayerProps) => {
                 I dedicated myself to enabling people to create music on the web for free.
             </p>
             <p>
-                Now, as I turn the page to embrace new challenges, this space serves as a museum of my past music on
-                audiotool. It's a history of dedication, creativity, failure, and the joy of moving forward.
+                Now, as I turn the page to embrace new challenges, this space serves as a museum of my own music on
+                audiotool. It's a history of creativity, dedication, failure, and the joy of moving forward.
             </p>
             <fieldset className="filter">
                 {Object.keys(Genres)
@@ -83,13 +83,18 @@ export const Player = ({ playback, tracksService }: PlayerProps) => {
                             tracksService.removeInclusiveFilter(Genres[genre].filter)
                         }
                     }} defaultChecked={true} />)}
-                <Checkbox label={"At least one ★"} key="star" onChange={(checked: boolean) => {
-                    if (checked) {
-                        tracksService.addExclusiveFilter(TracksService.AtLeastOneStar)
-                    } else {
-                        tracksService.removeExclusiveFilter(TracksService.AtLeastOneStar)
-                    }
-                }} />
+                <Checkbox label={"At least one ★"}
+                          onChange={(checked: boolean) => {
+                              if (checked) {
+                                  tracksService.addExclusiveFilter(TracksService.AtLeastOneStar)
+                              } else {
+                                  tracksService.removeExclusiveFilter(TracksService.AtLeastOneStar)
+                              }
+                          }} />
+                <Checkbox label={"Latest To Old"}
+                          onChange={(checked: boolean) => {
+                              tracksService.reversed = checked
+                          }} />
             </fieldset>
         </div>
     )

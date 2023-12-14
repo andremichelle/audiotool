@@ -1,10 +1,10 @@
 import "./App.sass"
 import { TrackList } from "./TrackList.tsx"
-import { Playback } from "../Playback.ts"
-import { Player } from "./Player.tsx"
+import { PlaybackService } from "../PlaybackService.ts"
+import { OutletBox } from "./OutletBox.tsx"
 import { TracksService } from "../TrackService.ts"
 
-export type AppProps = { tracksService: TracksService, playback: Playback }
+export type AppProps = { tracksService: TracksService, playback: PlaybackService }
 
 export const App = ({ tracksService, playback }: AppProps) => {
     return (
@@ -13,7 +13,7 @@ export const App = ({ tracksService, playback }: AppProps) => {
             <main>
                 <div></div>
                 <TrackList tracksService={tracksService} playback={playback}></TrackList>
-                <Player playback={playback} tracksService={tracksService} />
+                <OutletBox playback={playback} tracksService={tracksService} />
             </main>
             <footer></footer>
         </div>

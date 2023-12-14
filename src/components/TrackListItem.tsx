@@ -3,14 +3,14 @@ import React, { memo, useEffect, useRef } from "react"
 import { PeaksPainter } from "../waveform.ts"
 import { Peaks } from "../common/peaks.ts"
 import { unitValue } from "../common/lang.ts"
-import { Playback, PlaybackState } from "../Playback.ts"
+import { PlaybackService, PlaybackState } from "../PlaybackService.ts"
 import { clamp } from "../common/math.ts"
 import { Track } from "../Track.ts"
 
 export type TrackListItemProps = {
     track: Track
     isActiveTrack: boolean
-    playback: Playback
+    playback: PlaybackService
     playbackState: PlaybackState
     playbackProgress: unitValue
 }
@@ -107,7 +107,7 @@ const playbackStateToIcon = (isCurrentTrack: boolean, playbackState: PlaybackSta
             case "buffering":
                 return "#buffering"
             case "playing":
-                return "#playing"
+                return "#pause"
             case "paused":
                 return "#play"
             case "error":
