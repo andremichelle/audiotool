@@ -20,11 +20,11 @@ export const Checkbox = ({ label, color, onChange, defaultChecked }: CheckboxPro
         <>
             <input type="checkbox" id={id} checked={isChecked} onChange={() => setIsChecked(value => !value)} />
             <label className="checkbox" htmlFor={id}>
-                <svg>
+                <svg style={{ color: color ?? "inherit" }}>
                     <use href="#checkbox-false"></use>
                     <use href="#checkbox-true"></use>
                 </svg>
-                <span style={{ color: color ?? "inherit" }}>{label}</span>
+                <span>{label}</span>
             </label>
         </>
     )
