@@ -18,7 +18,7 @@ export const TrackListItem = memo(({ track, isActiveTrack, playback }: TrackList
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const progressRef = useRef<HTMLDivElement>(null)
 
-    const [trackState, setTrackState] = useState<PlaybackState>("playing")
+    const [trackState, setTrackState] = useState<PlaybackState>("paused")
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -38,22 +38,17 @@ export const TrackListItem = memo(({ track, isActiveTrack, playback }: TrackList
         if (isActiveTrack) {
             item.current?.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" })
             playbackSubscription.own(playback.subscribe(event => {
+                setTrackState(event.state)
                 if (event.state === "playing") {
-                    setTrackState(event.state)
-                    progressRef.current?.style.setProperty("--progress", String(event.progress))
-                } else if (event.state === "buffering") {
-                    setTrackState(event.state)
-                } else if (event.state === "paused") {
-                    setTrackState(event.state)
-                } else if (event.state === "error") {
-                    setTrackState(event.state)
+                    progressRef.current?.style
+                        .setProperty("--progress", String(event.progress))
                 }
             }))
         } else {
             playbackSubscription.terminate()
         }
         return () => playbackSubscription.terminate()
-    }, [isActiveTrack, playback])
+    }, [playback, isActiveTrack])
 
     return (
         <div className={["track-list-item", ...(isActiveTrack ? ["active"] : [])].join(" ")}
