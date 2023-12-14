@@ -84,6 +84,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                         }
                     }} defaultChecked={true} />)}
                 <Checkbox label={"At least one ★"}
+                          defaultChecked={true}
                           onChange={(checked: boolean) => {
                               if (checked) {
                                   tracksService.addExclusiveFilter(TracksService.AtLeastOneStar)
