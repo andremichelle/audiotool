@@ -35,10 +35,10 @@ import { MeterWorkletNode } from "./waa/meter-node.ts"
                     reason => `AudioContext resume failed with '${reason}'`)
             console.debug(`state: ${context.state} (after resume)`)
         }
-        window.addEventListener("pointerdown", listener, { once: true, capture: true })
+        // window.addEventListener("pointerdown", listener, { once: true, capture: true })
         window.addEventListener("click", listener, { once: true, capture: true })
-        window.addEventListener("touchend", listener, { once: true, capture: true })
-        window.addEventListener("focus", listener, { once: true, capture: true })
+        // window.addEventListener("touchend", listener, { once: true, capture: true })
+        // window.addEventListener("focus", listener, { once: true, capture: true })
     }
     context.addEventListener("statechange", () => {
         console.debug(`AudioContext.state changed to ${context.state}`)
