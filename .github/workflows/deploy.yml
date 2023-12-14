@@ -21,4 +21,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           localDir: dist/
           remoteDir: /
-          options: --verbose --ascii --no-perms
+          options: --verbose --ascii --no-perms --exclude=cover --exclude=mp3
