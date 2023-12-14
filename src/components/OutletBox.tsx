@@ -71,7 +71,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                 years, I dedicated myself to enabling people to create music in the web for free.
             </p>
             <p>
-                This space serves as a museum of my own music on audiotool. It's a history of creativity, dedication,
+                This space serves as a museum of my music on audiotool. It's a history of creativity, dedication,
                 failure, and the joy of moving forward.
             </p>
             <fieldset className="filter">
