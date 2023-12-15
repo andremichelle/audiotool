@@ -67,7 +67,8 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                 <canvas ref={canvasRef}></canvas>
             </div>
             <p>
-                Hi, I'm André Michelle, the originator of <a href="https://audiotool.com">audiotool.com</a> and a passionate web developer. For the last 16
+                Hi, I'm André Michelle, the originator of <a href="https://audiotool.com">audiotool.com</a> and a
+                passionate web developer. For the last 16
                 years, I dedicated myself to enabling people to create music in the web for free.
             </p>
             <p>
@@ -77,17 +78,20 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
             <fieldset className="filter">
                 {Object.entries(Genres)
                     .map(([name, genre]: [string, Genre]) =>
-                        <Checkbox label={name} color={genre.color} key={name}
+                        <Checkbox label={name}
+                                  color={genre.color}
+                                  key={name}
+                                  checked={tracksService.hasInclusiveFilter(genre.filter)}
                                   onChange={(checked: boolean) => {
                                       if (checked) {
                                           tracksService.addInclusiveFilter(genre.filter)
                                       } else {
                                           tracksService.removeInclusiveFilter(genre.filter)
                                       }
-                                  }} defaultChecked={true} />)}
+                                  }} />)}
                 <Checkbox label={"At least one ★"}
                           color="gray"
-                          defaultChecked={true}
+                          checked={tracksService.hasExclusiveFilter(TracksService.AtLeastOneStar)}
                           onChange={(checked: boolean) => {
                               if (checked) {
                                   tracksService.addExclusiveFilter(TracksService.AtLeastOneStar)
@@ -97,6 +101,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                           }} />
                 <Checkbox label={"Latest To Old"}
                           color="gray"
+                          checked={tracksService.reversed}
                           onChange={(checked: boolean) => {
                               tracksService.reversed = checked
                           }} />

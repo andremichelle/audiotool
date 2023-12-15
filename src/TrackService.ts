@@ -1,4 +1,4 @@
-import { panic, Predicate } from "./common/lang.ts"
+import { int, panic, Predicate } from "./common/lang.ts"
 import { Notifier, Observer } from "./common/observers.ts"
 import { Subscription } from "./common/terminable.ts"
 import { Arrays } from "./common/arrays.ts"
@@ -38,6 +38,10 @@ export class TracksService {
         return Option.None
     }
 
+    getUnfilteredByIndex(index: int): Option<Track> {return Option.wrap(this.#tracks.at(index))}
+
+    isTrackVisible(track: Track): boolean {return this.tracks().includes(track)}
+
     tracks(): ReadonlyArray<Track> {
         const tracks = this.#tracks.filter(track => this.#combinedFilter(track))
         return this.#reversed ? tracks.toReversed() : tracks
@@ -62,6 +66,10 @@ export class TracksService {
         this.#notifier.notify(this)
     }
 
+    hasInclusiveFilter(filter: Predicate<Track>): boolean {
+        return this.#inclusiveFilters.includes(filter)
+    }
+
     addExclusiveFilter(filter: Predicate<Track>): void {
         if (this.#exclusiveFilters.includes(filter)) {return}
         this.#exclusiveFilters.push(filter)
@@ -74,5 +82,13 @@ export class TracksService {
         this.#notifier.notify(this)
     }
 
+    hasExclusiveFilter(filter: Predicate<Track>): boolean {
+        return this.#exclusiveFilters.includes(filter)
+    }
+
     subscribe(observer: Observer<TracksService>): Subscription {return this.#notifier.subscribe(observer)}
+
+    releaseAllExclusive(): void {
+        Arrays.clear(this.#exclusiveFilters)
+    }
 }

@@ -75,7 +75,7 @@
     "bpm": 128,
     "date": 1283437526000,
     "genre": "Techno",
-    "rating": 1
+    "rating": 3
   },
   {
     "id": "011",
@@ -119,7 +119,7 @@
     "bpm": 127,
     "date": 1298486640000,
     "genre": "Electro",
-    "rating": 2
+    "rating": 3
   },
   {
     "id": "017",
@@ -134,7 +134,7 @@
     "bpm": 127,
     "date": 1300892760000,
     "genre": "House",
-    "rating": 1
+    "rating": 2
   },
   {
     "id": "019",
@@ -142,7 +142,7 @@
     "bpm": 127,
     "date": 1300918612000,
     "genre": "Techno",
-    "rating": 1
+    "rating": 2
   },
   {
     "id": "020",
@@ -150,7 +150,7 @@
     "bpm": 127,
     "date": 1302643674000,
     "genre": "Techno",
-    "rating": 2
+    "rating": 3
   },
   {
     "id": "021",
@@ -165,7 +165,7 @@
     "bpm": 125,
     "date": 1303774254000,
     "genre": "Downtempo",
-    "rating": 2
+    "rating": 3
   },
   {
     "id": "023",
@@ -180,7 +180,7 @@
     "bpm": 129,
     "date": 1307313407000,
     "genre": "Techno",
-    "rating": 2
+    "rating": 3
   },
   {
     "id": "025",
@@ -241,7 +241,7 @@
     "bpm": 128,
     "date": 1315483177000,
     "genre": "Techno",
-    "rating": 2
+    "rating": 3
   },
   {
     "id": "033",
@@ -263,7 +263,7 @@
     "bpm": 128,
     "date": 1316013919000,
     "genre": "Techno",
-    "rating": 1
+    "rating": 2
   },
   {
     "id": "036",
@@ -326,7 +326,7 @@
     "bpm": 128,
     "date": 1321631916000,
     "genre": "Techno",
-    "rating": 1
+    "rating": 2
   },
   {
     "id": "044",

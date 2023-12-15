@@ -6,11 +6,11 @@ export type CheckboxProps = {
     label: string
     color?: string
     onChange: Procedure<boolean>
-    defaultChecked?: boolean
+    checked?: boolean
 }
 
-export const Checkbox = ({ label, color, onChange, defaultChecked }: CheckboxProps) => {
-    const [isChecked, setIsChecked] = useState(defaultChecked ?? false)
+export const Checkbox = ({ label, color, onChange, checked }: CheckboxProps) => {
+    const [isChecked, setIsChecked] = useState(checked ?? false)
 
     useEffect(() => onChange(isChecked), [onChange, isChecked])
 

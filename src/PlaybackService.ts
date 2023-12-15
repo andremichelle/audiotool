@@ -49,7 +49,7 @@ export class PlaybackService {
     toggle(track: Track): void {
         if (this.#active.contains(track)) {
             if (this.#audio.paused) {
-                this.#audio.play().catch(reason => console.debug(`Could not play audio due to '${reason}'`))
+                this.#audio.play().catch(() => {})
             } else {
                 this.#audio.pause()
             }
@@ -89,9 +89,10 @@ export class PlaybackService {
     subscribe(observer: Procedure<PlaybackEvent>): Subscription {return this.#notifier.subscribe(observer)}
 
     get active(): Option<Track> {return this.#active}
-    set active(value: Option<Track>) {
-        this.#active = value
-        this.#notify({ state: "activate", track: value })
+    set active(track: Option<Track>) {
+        this.#active = track
+        this.#updateBrowserUrl(track)
+        this.#notify({ state: "activate", track })
     }
     get meter(): MeterWorkletNode {return this.#meter}
 
@@ -112,8 +113,19 @@ export class PlaybackService {
             progress: this.#audio.currentTime / track.seconds
         })
         this.#audio.src = track.mp3URL
-        this.#audio.play().catch()
+        this.#audio.play().catch(() => {})
     }
 
     #notify(event: PlaybackEvent) {this.#notifier.notify(event)}
+
+    #updateBrowserUrl(track: Option<Track>): void {
+        window.history.replaceState(null, "", track.match({
+            none: () => "",
+            some: track => {
+                const name = track.name.replaceAll("#", "-")
+                const parts = name.split(" ").map(part => `${part.at(0)!.toUpperCase()}${part.substring(1)}`)
+                return `#${track.id}/${parts.join("")}`
+            }
+        }))
+    }
 }
