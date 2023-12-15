@@ -71,7 +71,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
 
     return (
         <div className="outlet-box">
-            <h1 className="hide-if-tiny">andré michelle</h1>
+            <h1>andré michelle</h1>
             <h2>audiotool discography</h2>
             <h3>2007 - 2023</h3>
             <div className="track-name">{track?.name}</div>
@@ -87,7 +87,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                 This space serves as a museum of my music on audiotool. It's a history of creativity, dedication,
                 failure, and the joy of moving forward.
             </p>
-            <fieldset className="filter hide-if-tiny">
+            <fieldset className="filter">
                 {Object.entries(Genres)
                     .map(([name, genre]: [string, Genre]) =>
                         <Checkbox label={name}
