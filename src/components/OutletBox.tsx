@@ -71,7 +71,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
 
     return (
         <div className="outlet-box">
-            <h1>andré michelle</h1>
+            <h1 className="hide-if-tiny">andré michelle</h1>
             <h2>audiotool discography</h2>
             <h3>2007 - 2023</h3>
             <div className="track-name">{track?.name}</div>
@@ -80,14 +80,14 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
             </div>
             <p>
                 Hi, I'm André Michelle, the originator of <a href="https://audiotool.com">audiotool.com</a> and a
-                passionate web developer. For the last 16
-                years, I dedicated myself to enabling people to create music in the web for free.
+                passionate web developer. For the last 16 years, I dedicated myself to enabling people to create music
+                in the web for free.
             </p>
             <p>
                 This space serves as a museum of my music on audiotool. It's a history of creativity, dedication,
                 failure, and the joy of moving forward.
             </p>
-            <fieldset className="filter">
+            <fieldset className="filter hide-if-tiny">
                 {Object.entries(Genres)
                     .map(([name, genre]: [string, Genre]) =>
                         <Checkbox label={name}

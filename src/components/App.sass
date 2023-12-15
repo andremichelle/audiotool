@@ -17,6 +17,8 @@ div.app
     top: 0
     position: sticky
     height: 4em
+    @include tiny
+      height: 1em
     z-index: 1
     background: linear-gradient(to bottom, rgba(34, 34, 34, 0.75), rgba(20, 20, 20, 0.75)), url("/images/bg.gif")
     mask-image: linear-gradient(black, transparent)
@@ -24,6 +26,8 @@ div.app
   main
     // minus header and footer
     min-height: calc(100% - 8em)
+    @include tiny
+      min-height: calc(100% - 2em)
     display: grid
     grid-template-columns: 1fr min-content 1fr
     @include normal
@@ -38,5 +42,11 @@ div.app
     bottom: 0
     position: sticky
     height: 4em
+    @include tiny
+      height: 1em
     background: linear-gradient(to bottom, rgba(34, 34, 34, 0.75), rgba(20, 20, 20, 0.75)), url("/images/bg.gif")
     mask-image: linear-gradient(transparent, black)
+
+.hide-if-tiny
+  @include tiny
+    display: none !important
