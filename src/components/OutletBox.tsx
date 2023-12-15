@@ -1,6 +1,6 @@
 import "./OutletBox.sass"
 import { PlaybackService } from "../PlaybackService.ts"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Terminator } from "../common/terminable.ts"
 import { Mapping } from "../common/mapping.ts"
 import { gainToDb } from "../common/conversion.ts"
@@ -10,6 +10,8 @@ import { Checkbox } from "./Checkbox.tsx"
 
 import { Genre, Genres } from "../genres.ts"
 import { TracksService } from "../TrackService.ts"
+import { Nullable } from "../common/lang.ts"
+import { Track } from "../Track.ts"
 
 export type PlayerProps = {
     playback: PlaybackService
@@ -18,13 +20,14 @@ export type PlayerProps = {
 
 export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
+    const [track, setTrack] = useState<Nullable<Track>>(playback.active.unwrapOrNull())
     useEffect(() => {
         const canvas = canvasRef.current
         if (canvas === null) {return}
         const context = canvas.getContext("2d")!
-        const subscription = new Terminator()
+        const meterSubscription = new Terminator()
         const resizeObserver = new ResizeObserver(() => {
-            subscription.terminate()
+            meterSubscription.terminate()
             const w = canvas.width = canvas.clientWidth * devicePixelRatio
             const h = canvas.height = canvas.clientHeight * devicePixelRatio
             const m = new Mapping.Linear(-48, 0)
@@ -49,11 +52,19 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
                 }
             }
             observer({ peaks: [new Float32Array([0, 0])], peakHoldValue: [new Float32Array([0, 0])] })
-            subscription.own(playback.meter.subscribe(observer))
+            meterSubscription.own(playback.meter.subscribe(observer))
         })
         resizeObserver.observe(canvas)
+
+        const playbackSubscription = playback.subscribe(event => {
+            if (event.state === "activate") {
+                setTrack(event.track.unwrapOrNull())
+            }
+        })
+
         return () => {
-            subscription.terminate()
+            meterSubscription.terminate()
+            playbackSubscription.terminate()
             resizeObserver.disconnect()
         }
     }, [playback])
@@ -63,6 +74,7 @@ export const OutletBox = ({ playback, tracksService }: PlayerProps) => {
             <h1>andré michelle</h1>
             <h2>audiotool discography</h2>
             <h3>2007 - 2023</h3>
+            <div className="track-name">{track?.name}</div>
             <div className="peak-meter">
                 <canvas ref={canvasRef}></canvas>
             </div>

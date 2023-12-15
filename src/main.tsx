@@ -36,7 +36,6 @@ import { Genres } from "./genres.ts"
     if (!isNaN(idAsNumber) && idAsNumber > 0 && idAsNumber <= 196) {
         tracksService.getUnfilteredByIndex(idAsNumber - 1).ifSome(track => {
             if (!tracksService.isTrackVisible(track)) {
-                Object.values(Genres).forEach(genre => tracksService.addInclusiveFilter(genre.filter))
                 tracksService.removeExclusiveFilter(TracksService.AtLeastOneStar)
             }
             playback.toggle(track)
