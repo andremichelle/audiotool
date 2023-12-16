@@ -59,10 +59,9 @@ export const TrackListItem = memo(({ track, isActiveTrack, playback }: TrackList
                 <img src={track.tinyCoverURL} />
                 <img src={track.tinyCoverURL} />
             </div>
-            <div className="state" onClick={() => playback.toggle(track)}>
-                <svg>
-                    <use href={playbackStateToIcon(isActiveTrack, trackState)} />
-                </svg>
+            <div className="state"
+                 onClick={() => playback.toggle(track)}>
+                {playbackStateToIcon(isActiveTrack, trackState)}
             </div>
             <div className="header">
                 <div className="name">{track.name}</div>
@@ -109,18 +108,46 @@ const paint = (canvas: HTMLCanvasElement, track: Track): void => {
     context.fill()
 }
 
-const playbackStateToIcon = (isCurrentTrack: boolean, playbackState: PlaybackState): string => {
+const playbackStateToIcon = (isCurrentTrack: boolean, playbackState: PlaybackState) => {
     if (isCurrentTrack) {
         switch (playbackState) {
             case "buffering":
-                return "#buffering"
+                // We cannot use SVGUseElement here since it is terribly slow
+                return <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="0">
+                        <animate id="spinner_0Nme" begin="0;spinner_ITag.begin+0.4s" attributeName="r" calcMode="spline"
+                                 dur="1.2s" values="0;11" keySplines=".52,.6,.25,.99" fill="freeze" />
+                        <animate begin="0;spinner_ITag.begin+0.4s" attributeName="opacity" calcMode="spline" dur="1.2s"
+                                 values="1;0" keySplines=".52,.6,.25,.99" fill="freeze" />
+                    </circle>
+                    <circle cx="12" cy="12" r="0">
+                        <animate id="spinner_f83A" begin="spinner_0Nme.begin+0.4s" attributeName="r" calcMode="spline"
+                                 dur="1.2s" values="0;11" keySplines=".52,.6,.25,.99" fill="freeze" />
+                        <animate begin="spinner_0Nme.begin+0.4s" attributeName="opacity" calcMode="spline" dur="1.2s"
+                                 values="1;0" keySplines=".52,.6,.25,.99" fill="freeze" />
+                    </circle>
+                    <circle cx="12" cy="12" r="0">
+                        <animate id="spinner_ITag" begin="spinner_0Nme.begin+0.8s" attributeName="r" calcMode="spline"
+                                 dur="1.2s" values="0;11" keySplines=".52,.6,.25,.99" fill="freeze" />
+                        <animate begin="spinner_0Nme.begin+0.8s" attributeName="opacity" calcMode="spline" dur="1.2s"
+                                 values="1;0" keySplines=".52,.6,.25,.99" fill="freeze" />
+                    </circle>
+                </svg>
             case "playing":
-                return "#pause"
+                return <svg>
+                    <use href="#pause"></use>
+                </svg>
             case "paused":
-                return "#play"
+                return <svg>
+                    <use href="#play"></use>
+                </svg>
             case "error":
-                return "#error"
+                return <svg>
+                    <use href="#error"></use>
+                </svg>
         }
     }
-    return "#play"
+    return <svg>
+        <use href="#play"></use>
+    </svg>
 }
